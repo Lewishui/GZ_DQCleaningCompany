@@ -29,5 +29,5 @@ C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司�
 C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmUserManger.resources
 C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmViewUser.resources
 C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.OrdersControl.resources
-C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\bin\Debug\System.Data.SQLite.dll
-C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\bin\Debug\System.Data.SQLite.xml
+C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmAddOrder.resources
+C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmOrder.resources

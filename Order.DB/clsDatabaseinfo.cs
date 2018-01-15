@@ -16,52 +16,33 @@ namespace Order.DB
         public string AdminIS { get; set; }
         public string jigoudaima { get; set; }
     }
-    public class clscustomerinfo
-    {
-        public int customer_id { get; set; }
-        public string customer_name { get; set; }
-        public string customer_adress { get; set; }
-        public string customer_shuihao { get; set; }
-        public string customer_bank { get; set; }
-        public string customer_account { get; set; }
-        public string customer_phone { get; set; }
-        public string customer_contact { get; set; }
-        public DateTime Input_Date { get; set; }
-    }
-    public class clsProductinfo
-    {
-        public int Product_id { get; set; }
-        public string Product_no { get; set; }
-        public string Product_name { get; set; }
-        public string Product_salse { get; set; }
-        public string Product_address { get; set; }
-
-        public DateTime Input_Date { get; set; }
-    }
-    //客户 订货时间  订单号   产品型号  名称  数量   单价  金额  预计交货时间  交货时间2  订单管理员   开票  是否交货 付款日期    备注
+ 
+    //合同编号	客户姓名	客户住址	联系电话	合同到期时间	合同时长	实收/元	月价/元	面积/m²	提醒收费时间	每月次	总次数	剩余数	"擦玻璃
+      //"	客户要求	备注
     public class clsOrderinfo
     {
         public int order_id { get; set; }
-        public string customer_name { get; set; }
-        public DateTime dinghuoshijian { get; set; }
-        public string order_no { get; set; }
-        public string Product_no { get; set; }
-        public string Product_name { get; set; }
-        public string shuliang { get; set; }
-        public string Product_salse { get; set; }
-        public string jine { get; set; }
-        public DateTime yujijiaohuoshijian { get; set; }
-        public DateTime jianhuoshijian2 { get; set; }
-        public string dingdanguanliyuan { get; set; }
-        public string kaipiao { get; set; }
-        public string shifoujiaohuo { get; set; }
-        public DateTime fukuanriqi { get; set; }
+        public string hetongbianhao { get; set; }
+        public string kehuxingming { get; set; }
+        public string kehudizhi { get; set; }
+        public string lianxidianhua { get; set; }
+        public string hetongdaoqishijian { get; set; }
+        public string hetongshichang { get; set; }
+        public string shishou { get; set; }
+        public string yuejia { get; set; }
+        public string mianji { get; set; }
+        public string tixingshoufeishijian { get; set; }
+        public string meiyuanci { get; set; }
+        public string zongcishu { get; set; }
+        public string shengyushu { get; set; }
+        public string chaboli { get; set; }
+        public string kehuyaoqiu { get; set; }
         public string beizhu { get; set; }
         public DateTime Input_Date { get; set; }
         //新增的标记
         public string xinzeng { get; set; }
      
-        //
+    
         public string Message { get; set; }
       
     }

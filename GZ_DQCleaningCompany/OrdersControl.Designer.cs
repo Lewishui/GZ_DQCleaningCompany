@@ -31,8 +31,6 @@
             this.contentPanel = new System.Windows.Forms.Panel();
             this.crystalButton6 = new GZ_DQCleaningCompany.CrystalButton();
             this.crystalButton5 = new GZ_DQCleaningCompany.CrystalButton();
-            this.crystalButton4 = new GZ_DQCleaningCompany.CrystalButton();
-            this.crystalButton3 = new GZ_DQCleaningCompany.CrystalButton();
             this.crystalButton2 = new GZ_DQCleaningCompany.CrystalButton();
             this.crystalButton1 = new GZ_DQCleaningCompany.CrystalButton();
             this.contentPanel.SuspendLayout();
@@ -43,8 +41,6 @@
             this.contentPanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.contentPanel.Controls.Add(this.crystalButton6);
             this.contentPanel.Controls.Add(this.crystalButton5);
-            this.contentPanel.Controls.Add(this.crystalButton4);
-            this.contentPanel.Controls.Add(this.crystalButton3);
             this.contentPanel.Controls.Add(this.crystalButton2);
             this.contentPanel.Controls.Add(this.crystalButton1);
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -72,7 +68,7 @@
             this.crystalButton5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.crystalButton5.BackColor = System.Drawing.Color.DarkTurquoise;
             this.crystalButton5.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
-            this.crystalButton5.Location = new System.Drawing.Point(202, 284);
+            this.crystalButton5.Location = new System.Drawing.Point(202, 260);
             this.crystalButton5.Name = "crystalButton5";
             this.crystalButton5.Size = new System.Drawing.Size(309, 58);
             this.crystalButton5.TabIndex = 10;
@@ -80,42 +76,16 @@
             this.crystalButton5.UseVisualStyleBackColor = false;
             this.crystalButton5.Click += new System.EventHandler(this.button4_Click);
             // 
-            // crystalButton4
-            // 
-            this.crystalButton4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.crystalButton4.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.crystalButton4.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
-            this.crystalButton4.Location = new System.Drawing.Point(202, 216);
-            this.crystalButton4.Name = "crystalButton4";
-            this.crystalButton4.Size = new System.Drawing.Size(309, 58);
-            this.crystalButton4.TabIndex = 9;
-            this.crystalButton4.Text = "信息中心";
-            this.crystalButton4.UseVisualStyleBackColor = false;
-            this.crystalButton4.Click += new System.EventHandler(this.pendingButton_Click);
-            // 
-            // crystalButton3
-            // 
-            this.crystalButton3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.crystalButton3.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.crystalButton3.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
-            this.crystalButton3.Location = new System.Drawing.Point(202, 148);
-            this.crystalButton3.Name = "crystalButton3";
-            this.crystalButton3.Size = new System.Drawing.Size(309, 58);
-            this.crystalButton3.TabIndex = 8;
-            this.crystalButton3.Text = "订单";
-            this.crystalButton3.UseVisualStyleBackColor = false;
-            this.crystalButton3.Click += new System.EventHandler(this.newButton_Click);
-            // 
             // crystalButton2
             // 
             this.crystalButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.crystalButton2.BackColor = System.Drawing.Color.DarkTurquoise;
             this.crystalButton2.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
-            this.crystalButton2.Location = new System.Drawing.Point(202, 80);
+            this.crystalButton2.Location = new System.Drawing.Point(202, 157);
             this.crystalButton2.Name = "crystalButton2";
             this.crystalButton2.Size = new System.Drawing.Size(309, 58);
             this.crystalButton2.TabIndex = 7;
-            this.crystalButton2.Text = "产品";
+            this.crystalButton2.Text = "管理员";
             this.crystalButton2.UseVisualStyleBackColor = false;
             this.crystalButton2.Click += new System.EventHandler(this.orderConfirmButton_Click);
             // 
@@ -124,11 +94,11 @@
             this.crystalButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.crystalButton1.BackColor = System.Drawing.Color.DarkTurquoise;
             this.crystalButton1.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
-            this.crystalButton1.Location = new System.Drawing.Point(202, 12);
+            this.crystalButton1.Location = new System.Drawing.Point(202, 54);
             this.crystalButton1.Name = "crystalButton1";
             this.crystalButton1.Size = new System.Drawing.Size(309, 58);
             this.crystalButton1.TabIndex = 6;
-            this.crystalButton1.Text = "客户";
+            this.crystalButton1.Text = "普通用户";
             this.crystalButton1.UseVisualStyleBackColor = false;
             this.crystalButton1.Click += new System.EventHandler(this.receiveOrderButton_Click);
             // 
@@ -157,8 +127,6 @@
         private System.Windows.Forms.Panel contentPanel;
         private CrystalButton crystalButton1;
         private CrystalButton crystalButton5;
-        private CrystalButton crystalButton4;
-        private CrystalButton crystalButton3;
         private CrystalButton crystalButton2;
         private CrystalButton crystalButton6;
     }

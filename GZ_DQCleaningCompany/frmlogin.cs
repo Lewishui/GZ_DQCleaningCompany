@@ -32,9 +32,9 @@ namespace GZ_DQCleaningCompany
             aboutbox = new frmAboutBox();
 
             InitialSystemInfo();
-            se = new Sunisoft.IrisSkin.SkinEngine();
-            se.SkinAllForm = true;
-            se.SkinFile = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ""), "PageColor1.ssk");
+            //se = new Sunisoft.IrisSkin.SkinEngine();
+            //se.SkinAllForm = true;
+            //se.SkinFile = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ""), "PageColor1.ssk");
 
             InitialPassword();
             ProcessLogger.Fatal("login" + DateTime.Now.ToString());
@@ -281,6 +281,29 @@ namespace GZ_DQCleaningCompany
 
         }
 
+        private void 导入彩票数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStrip1.Visible = false;
+
+
+            if (OrdersControl == null)
+            {
+                OrdersControl = new OrdersControl(this.txtSAPUserId.Text, this.txtSAPPassword.Text.Trim());
+                OrdersControl.FormClosed += new FormClosedEventHandler(FrmOMS_FormClosed);
+            }
+            if (OrdersControl == null)
+            {
+                OrdersControl = new OrdersControl(this.txtSAPUserId.Text, this.txtSAPPassword.Text.Trim());
+            }
+            OrdersControl.Show(this.dockPanel2);
+        }
+        void FrmOMS_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (sender is OrdersControl)
+            {
+                OrdersControl = null;
+            }
+        }
 
     }
 }

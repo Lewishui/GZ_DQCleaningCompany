@@ -58,11 +58,11 @@ namespace Order.Buiness
         public void lock_Userpassword_Server(List<clsuserinfo> AddMAPResult)
         {
             string sql = "update GZCleaning_User set Btype ='" + AddMAPResult[0].Btype.Trim() + "' where name ='" + AddMAPResult[0].name + "'";
-          
+
             int result = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, sql, CommandType.Text, null);
 
             return;
-          
+
         }
         public List<clsuserinfo> ReadUserlistfromServer()
         {
@@ -71,9 +71,9 @@ namespace Order.Buiness
             SQLiteConnection dbConn = new SQLiteConnection("Data Source=" + dataSource);
 
             dbConn.Open();
-            SQLiteCommand dbCmd = dbConn.CreateCommand();       
+            SQLiteCommand dbCmd = dbConn.CreateCommand();
             dbCmd.CommandText = conditions;
-            DbDataReader reader = SQLiteHelper.ExecuteReader("Data Source=" + newsth, dbCmd);    
+            DbDataReader reader = SQLiteHelper.ExecuteReader("Data Source=" + newsth, dbCmd);
             List<clsuserinfo> ClaimReport_Server = new List<clsuserinfo>();
             while (reader.Read())
             {
@@ -94,19 +94,19 @@ namespace Order.Buiness
                     item.jigoudaima = reader.GetString(6);
                 if (reader.GetValue(7) != null && Convert.ToString(reader.GetValue(7)) != "")
                     item.AdminIS = reader.GetString(7);
-                
+
                 ClaimReport_Server.Add(item);
 
                 //这里做数据处理....
             }
             return ClaimReport_Server;
-          
+
         }
 
         public List<clsuserinfo> findUser(string findtext)
         {
             string strSelect = "select * from GZCleaning_User where name='" + findtext + "'";
-            
+
             SQLiteConnection dbConn = new SQLiteConnection("Data Source=" + dataSource);
 
             dbConn.Open();
@@ -137,30 +137,30 @@ namespace Order.Buiness
                     item.jigoudaima = reader.GetString(6);
                 if (reader.GetValue(7) != null && Convert.ToString(reader.GetValue(7)) != "")
                     item.AdminIS = reader.GetString(7);
-                
+
                 ClaimReport_Server.Add(item);
 
                 //这里做数据处理....
             }
             return ClaimReport_Server;
-            
+
         }
         public void deleteUSER(string name)
         {
             string sql2 = "delete from GZCleaning_User where  name='" + name + "'";
 
             int result = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, sql2, CommandType.Text, null);
-           
+
             return;
-          
+
         }
         public void changeUserpassword_Server(List<clsuserinfo> AddMAPResult)
         {
             string sql = "update GZCleaning_User set password ='" + AddMAPResult[0].password.Trim() + "' where name ='" + AddMAPResult[0].name + "'";
-      
+
             int result = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, sql, CommandType.Text, null);
             return;
-            
+
         }
         public void updateLoginTime_Server(List<clsuserinfo> AddMAPResult)
         {
@@ -169,12 +169,13 @@ namespace Order.Buiness
             int result = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, sql, CommandType.Text, null);
 
             return;
-             
+
         }
-        public int create_customer_Server(List<clscustomerinfo> AddMAPResult)
+        public int create_order_Server(List<clsOrderinfo> AddMAPResult)
         {
-            string sql = "insert into JNOrder_customer(customer_name,customer_adress,customer_shuihao,customer_bank,customer_account,customer_phone,Input_Date,customer_contact) values ('" + AddMAPResult[0].customer_name + "','" + AddMAPResult[0].customer_adress + "','" + AddMAPResult[0].customer_shuihao + "','" + AddMAPResult[0].customer_bank + "','" + AddMAPResult[0].customer_account + "','" + AddMAPResult[0].customer_phone + "','" + AddMAPResult[0].Input_Date.ToString("yyyy/MM/dd") + "','" + AddMAPResult[0].customer_contact + "')";
-            int isrun = MySqlHelper.ExecuteSql(sql);
+            string sql = "insert into GZCleaning_Order(hetongbianhao,kehuxingming,kehudizhi,lianxidianhua,hetongdaoqishijian,hetongshichang,shishou,yuejia,mianji,tixingshoufeishijian,meiyuanci,zongcishu,shengyushu,chaboli,kehuyaoqiu,beizhu,Input_Date,xinzeng,Message) values ('" + AddMAPResult[0].hetongbianhao + "','" + AddMAPResult[0].kehuxingming + "','" + AddMAPResult[0].kehudizhi + "','" + AddMAPResult[0].lianxidianhua + "','" + AddMAPResult[0].hetongdaoqishijian + "','" + AddMAPResult[0].hetongshichang + "','" + AddMAPResult[0].shishou + "','" + AddMAPResult[0].yuejia + "','" + AddMAPResult[0].mianji + "','" + AddMAPResult[0].tixingshoufeishijian + "','" + AddMAPResult[0].meiyuanci + "','" + AddMAPResult[0].zongcishu + "','" + AddMAPResult[0].shengyushu + "','" + AddMAPResult[0].chaboli + "','" + AddMAPResult[0].kehuyaoqiu + "','" + AddMAPResult[0].beizhu + "','" + AddMAPResult[0].Input_Date.ToString("yyyy/MM/dd") + "','" + AddMAPResult[0].xinzeng + "','" + AddMAPResult[0].Message + "')";
+
+            int isrun = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, sql, CommandType.Text, null);
 
             return isrun;
         }
@@ -186,102 +187,25 @@ namespace Order.Buiness
             return isrun;
 
         }
-        public List<clscustomerinfo> findcustomer(string findtext)
-        {
-            MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(findtext);
-            List<clscustomerinfo> ClaimReport_Server = new List<clscustomerinfo>();
 
-            while (reader.Read())
-            {
-                clscustomerinfo item = new clscustomerinfo();
-
-                item.customer_id = reader.GetInt32(0);
-                if (reader.GetValue(1) != null && Convert.ToString(reader.GetValue(1)) != "")
-                    item.customer_name = reader.GetString(1);
-                if (reader.GetValue(2) != null && Convert.ToString(reader.GetValue(2)) != "")
-                    item.customer_adress = reader.GetString(2);
-                if (reader.GetValue(3) != null && Convert.ToString(reader.GetValue(3)) != "")
-                    item.customer_shuihao = reader.GetString(3);
-                if (reader.GetValue(4) != null && Convert.ToString(reader.GetValue(4)) != "")
-                    item.customer_bank = reader.GetString(4);
-                if (reader.GetValue(5) != null && Convert.ToString(reader.GetValue(5)) != "")
-                    item.customer_account = reader.GetString(5);
-                if (reader.GetValue(6) != null && Convert.ToString(reader.GetValue(6)) != "")
-                    item.customer_phone = reader.GetString(6);
-                if (reader.GetValue(7) != null && Convert.ToString(reader.GetValue(7)) != "")
-                    item.customer_contact = reader.GetString(7);
-
-                if (reader.GetValue(8) != null && Convert.ToString(reader.GetValue(8)) != "")
-                    item.Input_Date = Convert.ToDateTime(reader.GetString(8));
-
-
-
-                ClaimReport_Server.Add(item);
-
-                //这里做数据处理....
-            }
-            return ClaimReport_Server;
-        }
         public int updatecustomer_Server(string findtext)
         {
             int isrun = MySqlHelper.ExecuteSql(findtext);
 
             return isrun;
         }
-        public int create_Product_Server(List<clsProductinfo> AddMAPResult)
-        {
-            string sql = "insert into JNOrder_product(Product_no,Product_name,Product_salse,Product_address,Input_Date) values ('" + AddMAPResult[0].Product_no + "','" + AddMAPResult[0].Product_name + "','" + AddMAPResult[0].Product_salse + "','" + AddMAPResult[0].Product_address + "','" + AddMAPResult[0].Input_Date.ToString("yyyy/MM/dd") + "')";
-            int isrun = MySqlHelper.ExecuteSql(sql);
-
-            return isrun;
-        }
-        public List<clsProductinfo> findProductr(string findtext)
-        {
-            MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(findtext);
-            List<clsProductinfo> ClaimReport_Server = new List<clsProductinfo>();
-
-            while (reader.Read())
-            {
-                clsProductinfo item = new clsProductinfo();
-
-                item.Product_id = reader.GetInt32(0);
-                if (reader.GetValue(1) != null && Convert.ToString(reader.GetValue(1)) != "")
-                    item.Product_no = reader.GetString(1);
-                if (reader.GetValue(2) != null && Convert.ToString(reader.GetValue(2)) != "")
-                    item.Product_name = reader.GetString(2);
-                if (reader.GetValue(3) != null && Convert.ToString(reader.GetValue(3)) != "")
-                    item.Product_salse = reader.GetString(3);
-                if (reader.GetValue(4) != null && Convert.ToString(reader.GetValue(4)) != "")
-                    item.Product_address = reader.GetString(4);
-
-                if (reader.GetString(5) != null && reader.GetString(5) != "")
-                    item.Input_Date = Convert.ToDateTime(reader.GetString(5));
 
 
-
-                ClaimReport_Server.Add(item);
-
-                //这里做数据处理....
-            }
-            return ClaimReport_Server;
-        }
-        public int deleteProduct(string name)
-        {
-            string sql2 = "delete from JNOrder_product where  Product_id='" + name + "'";
-            int isrun = MySqlHelper.ExecuteSql(sql2);
-
-            return isrun;
-
-        }
-        public int updateProduct_Server(string findtext)
-        {
-            int isrun = MySqlHelper.ExecuteSql(findtext);
-
-            return isrun;
-        }
         public List<clsOrderinfo> findOrder(string findtext)
         {
-            MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(findtext);
+
+            SQLiteConnection dbConn = new SQLiteConnection("Data Source=" + dataSource);
+
+            dbConn.Open();
+            SQLiteCommand dbCmd = dbConn.CreateCommand();
+            dbCmd.CommandText = findtext;
+
+            DbDataReader reader = SQLiteHelper.ExecuteReader("Data Source=" + newsth, dbCmd);
             List<clsOrderinfo> ClaimReport_Server = new List<clsOrderinfo>();
 
             while (reader.Read())
@@ -290,76 +214,71 @@ namespace Order.Buiness
 
                 item.order_id = reader.GetInt32(0);
                 if (reader.GetValue(1) != null && Convert.ToString(reader.GetValue(1)) != "")
-
-                    item.customer_name = reader.GetString(1);
-
+                    item.hetongbianhao = reader.GetString(1);
                 if (reader.GetValue(2) != null && Convert.ToString(reader.GetValue(2)) != "")
-                    item.dinghuoshijian = Convert.ToDateTime(reader.GetString(2));
+                    item.kehuxingming = Convert.ToString(reader.GetString(2));
                 if (reader.GetValue(3) != null && Convert.ToString(reader.GetValue(3)) != "")
-
-                    item.order_no = reader.GetString(3);
+                    item.kehudizhi = reader.GetString(3);
                 if (reader.GetValue(4) != null && Convert.ToString(reader.GetValue(4)) != "")
 
-                    item.Product_no = reader.GetString(4);
+                    item.lianxidianhua = reader.GetString(4);
                 if (reader.GetValue(5) != null && Convert.ToString(reader.GetValue(5)) != "")
 
-                    item.Product_name = reader.GetString(5);
+                    item.hetongdaoqishijian = reader.GetString(5);
                 if (reader.GetValue(6) != null && Convert.ToString(reader.GetValue(6)) != "")
 
-                    item.shuliang = reader.GetString(6);
+                    item.hetongshichang = reader.GetString(6);
                 if (reader.GetValue(7) != null && Convert.ToString(reader.GetValue(7)) != "")
 
-                    item.Product_salse = reader.GetString(7);
+                    item.shishou = reader.GetString(7);
                 if (reader.GetValue(8) != null && Convert.ToString(reader.GetValue(8)) != "")
 
-                    item.jine = reader.GetString(8);
-
-
+                    item.yuejia = reader.GetString(8);
                 if (reader.GetValue(9) != null && Convert.ToString(reader.GetValue(9)) != "")
+                    item.mianji = Convert.ToString(reader.GetString(9));
 
-                    item.yujijiaohuoshijian = Convert.ToDateTime(reader.GetString(9));
-
-
-
-                //if (reader.GetString(10) != null && reader.GetString(10) != "")
                 if (reader.GetValue(10) != null && Convert.ToString(reader.GetValue(10)) != "")
 
-                    item.jianhuoshijian2 = Convert.ToDateTime(reader.GetString(10));
+                    item.tixingshoufeishijian = Convert.ToString(reader.GetString(10));
                 if (reader.GetValue(11) != null && Convert.ToString(reader.GetValue(11)) != "")
 
-                    item.dingdanguanliyuan = reader.GetString(11);
+                    item.meiyuanci = reader.GetString(11);
                 if (reader.GetValue(12) != null && Convert.ToString(reader.GetValue(12)) != "")
 
-                    item.kaipiao = reader.GetString(12);
+                    item.zongcishu = reader.GetString(12);
                 if (reader.GetValue(13) != null && Convert.ToString(reader.GetValue(13)) != "")
 
-                    item.shifoujiaohuo = reader.GetString(13);
+                    item.shengyushu = reader.GetString(13);
 
 
                 if (reader.GetString(14) != null && reader.GetString(14) != "")
-                    item.fukuanriqi = Convert.ToDateTime(reader.GetString(14));
+                    item.chaboli = Convert.ToString(reader.GetString(14));
                 if (reader.GetValue(15) != null && Convert.ToString(reader.GetValue(15)) != "")
 
-                    item.beizhu = reader.GetString(15);
-
-
-                //if (reader.GetString(16) != null && reader.GetString(16) != "")
+                    item.kehuyaoqiu = reader.GetString(15);
                 if (reader.GetValue(16) != null && Convert.ToString(reader.GetValue(16)) != "")
+                    item.beizhu = Convert.ToString(reader.GetString(16));
 
-                    item.Input_Date = Convert.ToDateTime(reader.GetString(16));
+                if (reader.GetValue(17) != null && Convert.ToString(reader.GetValue(17)) != "")
+                    item.Input_Date = Convert.ToDateTime(reader.GetString(17));
 
+                if (reader.GetValue(18) != null && Convert.ToString(reader.GetValue(18)) != "")
+                    item.xinzeng = Convert.ToString(reader.GetString(18));
 
+                if (reader.GetValue(19) != null && Convert.ToString(reader.GetValue(19)) != "")
+                    item.Message = Convert.ToString(reader.GetString(19));
 
                 ClaimReport_Server.Add(item);
 
-                //这里做数据处理....
+
             }
             return ClaimReport_Server;
         }
         public int deleteOrder(string name)
         {
-            string sql2 = "delete from JNOrder_order where  order_id='" + name + "'";
-            int isrun = MySqlHelper.ExecuteSql(sql2);
+            string sql2 = "delete from GZCleaning_Order where  order_id='" + name + "'";
+
+            int isrun = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, sql2, CommandType.Text, null);
 
             return isrun;
 

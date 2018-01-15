@@ -91,13 +91,13 @@ namespace GZ_DQCleaningCompany
 
         private void receiveOrderButton_Click(object sender, EventArgs e)
         {
-         
-            //var form = new frmCustomerMain("");
 
-            //if (form.ShowDialog() == DialogResult.OK)
-            //{
+            var form = new frmOrder("");
 
-            //}
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
 
 
         }
