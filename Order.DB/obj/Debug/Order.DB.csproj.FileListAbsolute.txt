@@ -1,0 +1,5 @@
+C:\mysteap\work_office\ProjectOut\JN订单管理\JNOrderManagermentSystem\Order.DB\bin\Debug\Order.DB.dll
+C:\mysteap\work_office\ProjectOut\JN订单管理\JNOrderManagermentSystem\Order.DB\bin\Debug\Order.DB.pdb
+C:\mysteap\work_office\ProjectOut\JN订单管理\JNOrderManagermentSystem\Order.DB\obj\Debug\Order.DB.dll
+C:\mysteap\work_office\ProjectOut\JN订单管理\JNOrderManagermentSystem\Order.DB\obj\Debug\Order.DB.pdb
+C:\mysteap\work_office\ProjectOut\JN订单管理\JNOrderManagermentSystem\Order.DB\obj\Debug\Order.DB.csprojResolveAssemblyReference.cache
