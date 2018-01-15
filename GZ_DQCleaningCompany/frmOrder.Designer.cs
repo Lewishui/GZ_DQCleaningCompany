@@ -79,6 +79,12 @@
             this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xuhao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.newButton = new System.Windows.Forms.Button();
+            this.moveDownButton1 = new System.Windows.Forms.Button();
+            this.delScheduleButton = new System.Windows.Forms.Button();
+            this.moveUpButton2 = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -88,12 +94,17 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // backgroundWorker2
             // 
             this.backgroundWorker2.WorkerReportsProgress = true;
             this.backgroundWorker2.WorkerSupportsCancellation = true;
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            this.backgroundWorker2.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker2_ProgressChanged);
+            this.backgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker2_RunWorkerCompleted);
             // 
             // pbStatus
             // 
@@ -284,6 +295,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(79, 25);
             this.toolStripButton1.Text = "保存";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
             // 
@@ -292,6 +304,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(79, 25);
             this.toolStripButton2.Text = "下载";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // groupBox1
             // 
@@ -320,6 +333,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.ImageIndex = 0;
@@ -463,6 +477,9 @@
             this.dataGridView1.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -504,13 +521,68 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 95);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(848, 372);
+            this.dataGridView1.Size = new System.Drawing.Size(848, 325);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.newButton);
+            this.groupBox3.Controls.Add(this.moveDownButton1);
+            this.groupBox3.Controls.Add(this.delScheduleButton);
+            this.groupBox3.Controls.Add(this.moveUpButton2);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox3.Location = new System.Drawing.Point(3, 426);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(848, 41);
+            this.groupBox3.TabIndex = 43;
+            this.groupBox3.TabStop = false;
+            // 
+            // newButton
+            // 
+            this.newButton.Location = new System.Drawing.Point(6, 9);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(35, 25);
+            this.newButton.TabIndex = 38;
+            this.newButton.Text = "+";
+            this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // moveDownButton1
+            // 
+            this.moveDownButton1.Location = new System.Drawing.Point(129, 9);
+            this.moveDownButton1.Name = "moveDownButton1";
+            this.moveDownButton1.Size = new System.Drawing.Size(35, 25);
+            this.moveDownButton1.TabIndex = 41;
+            this.moveDownButton1.Text = "▽";
+            this.moveDownButton1.UseVisualStyleBackColor = true;
+            // 
+            // delScheduleButton
+            // 
+            this.delScheduleButton.Location = new System.Drawing.Point(47, 9);
+            this.delScheduleButton.Name = "delScheduleButton";
+            this.delScheduleButton.Size = new System.Drawing.Size(35, 25);
+            this.delScheduleButton.TabIndex = 39;
+            this.delScheduleButton.Text = "-";
+            this.delScheduleButton.UseVisualStyleBackColor = true;
+            this.delScheduleButton.Click += new System.EventHandler(this.delScheduleButton_Click);
+            // 
+            // moveUpButton2
+            // 
+            this.moveUpButton2.Location = new System.Drawing.Point(88, 9);
+            this.moveUpButton2.Name = "moveUpButton2";
+            this.moveUpButton2.Size = new System.Drawing.Size(35, 25);
+            this.moveUpButton2.TabIndex = 40;
+            this.moveUpButton2.Text = "△";
+            this.moveUpButton2.UseVisualStyleBackColor = true;
             // 
             // frmOrder
             // 
@@ -533,6 +605,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -585,5 +659,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn xinzeng;
         private System.Windows.Forms.DataGridViewTextBoxColumn order_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Input_Date;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.Button moveDownButton1;
+        private System.Windows.Forms.Button delScheduleButton;
+        private System.Windows.Forms.Button moveUpButton2;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

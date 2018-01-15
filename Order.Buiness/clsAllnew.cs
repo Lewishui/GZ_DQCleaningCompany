@@ -190,7 +190,8 @@ namespace Order.Buiness
 
         public int updatecustomer_Server(string findtext)
         {
-            int isrun = MySqlHelper.ExecuteSql(findtext);
+        
+            int isrun = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, findtext, CommandType.Text, null);
 
             return isrun;
         }
