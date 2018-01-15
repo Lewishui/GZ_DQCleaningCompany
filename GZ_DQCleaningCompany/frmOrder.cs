@@ -28,9 +28,13 @@ namespace GZ_DQCleaningCompany
         List<clsOrderinfo> deletedorderList;
 
         private Hashtable dataGridChanges = null;
-        public frmOrder(string limit)
+        private bool is_AdminIS;
+
+        public frmOrder(bool Is_AdminIS)
         {
             InitializeComponent();
+            is_AdminIS = Is_AdminIS;
+
             this.dataGridChanges = new Hashtable();
             changeindex = new List<int>();
             Orderinfolist_Server = new List<clsOrderinfo>();
@@ -477,9 +481,14 @@ namespace GZ_DQCleaningCompany
                     }
                     if (item.xinzeng == "true")
                         conditions = "insert into GZCleaning_Order(hetongbianhao,kehuxingming,kehudizhi,lianxidianhua,hetongdaoqishijian,hetongshichang,shishou,yuejia,mianji,tixingshoufeishijian,meiyuanci,zongcishu,shengyushu,chaboli,kehuyaoqiu,beizhu,Input_Date,Message) values ('" + item.hetongbianhao + "','" + item.kehuxingming + "','" + item.kehudizhi + "','" + item.lianxidianhua + "','" + item.hetongdaoqishijian + "','" + item.hetongshichang + "','" + item.shishou + "','" + item.yuejia + "','" + item.mianji + "','" + item.tixingshoufeishijian + "','" + item.meiyuanci + "','" + item.zongcishu + "','" + item.shengyushu + "','" + item.chaboli + "','" + item.kehuyaoqiu + "','" + item.beizhu + "','" + item.Input_Date.ToString("yyyy/MM/dd") + "','" + item.Message + "')";
-                    else
+                    else if (is_AdminIS == true)
                         conditions = "update GZCleaning_Order set  " + conditions + " where order_id = " + item.order_id + " ";
-
+                    else if (is_AdminIS == false)
+                    {
+                        //MessageBox.Show("您是普通用户 无权修改单据，如需修改请联系管理员", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        e.Result = "[" + item.kehuxingming + "]普通用户无权修改单据，如需修改请联系管理员";
+                        throw new Exception("[" + item.kehuxingming + "]普通用户 无权修改单据，如需修改请联系管理员");
+                    }
                     // conditions += " order by Id desc";
                     #endregion
                     #endregion
@@ -522,7 +531,13 @@ namespace GZ_DQCleaningCompany
             }
             else
             {
-                toolStripLabel1.Text = "" + "(" + e.Result + ")" + "--数据已成功保存 可以继续编辑无需刷新";
+                if (!e.Result.ToString().Contains("Dear"))
+                {
+                    toolStripLabel1.Text = "" + "(" + e.Result + ")" + "--数据已成功保存 可以继续编辑无需刷新";
+                }
+                else
+                    toolStripLabel1.Text = e.Result.ToString();
+
                 changeindex = new List<int>();
 
                 dataGridView1.Enabled = true;
@@ -605,6 +620,11 @@ namespace GZ_DQCleaningCompany
             sw.Close();
             fa.Close();
             MessageBox.Show("Dear User, Down File  Successful ！", "System", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

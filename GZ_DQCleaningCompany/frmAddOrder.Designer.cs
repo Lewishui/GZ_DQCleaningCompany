@@ -82,7 +82,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(681, 424);
+            this.button2.Location = new System.Drawing.Point(681, 400);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 34);
             this.button2.TabIndex = 17;
@@ -92,7 +92,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(774, 424);
+            this.button1.Location = new System.Drawing.Point(774, 400);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 34);
             this.button1.TabIndex = 16;
@@ -396,7 +396,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 518);
+            this.ClientSize = new System.Drawing.Size(902, 475);
             this.Controls.Add(this.txbeizhu);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txkehuyaoqiu);
@@ -431,7 +431,9 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txphone);
             this.Controls.Add(this.label12);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

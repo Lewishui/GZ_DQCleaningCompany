@@ -12,20 +12,33 @@ namespace GZ_DQCleaningCompany
 {
     public partial class OrdersControl : DockContent
     {
- 
+        private bool Is_AdminIS;
 
-        public OrdersControl(string user, string password)
+
+        public OrdersControl(string user, string password, bool is_AdminIS1)
         {
             InitializeComponent();
+            Is_AdminIS = is_AdminIS1;
 
             this.Disposed += new EventHandler(OrdersControl_Disposed);
+            if (Is_AdminIS == true)
+            {
+                crystalButton2.Enabled = true;
 
+                crystalButton5.Enabled = true;
+            }
+            else
+            {
+                crystalButton2.Enabled = false;
+                crystalButton5.Enabled = false;
+
+            }
         }
 
 
         private void pendingButton_Click(object sender, EventArgs e)
         {
-   
+
             //var form = new frmInfoCenter("");
 
             //if (form.ShowDialog() == DialogResult.OK)
@@ -33,7 +46,7 @@ namespace GZ_DQCleaningCompany
 
             //}
 
-            
+
 
         }
 
@@ -44,14 +57,14 @@ namespace GZ_DQCleaningCompany
 
         private void button4_Click(object sender, EventArgs e)
         {
-          
+
             //var form = new frmLogCenter("");
 
             //if (form.ShowDialog() == DialogResult.OK)
             //{
 
             //}
-            
+
         }
 
         private void shippedOrderButton_Click(object sender, EventArgs e)
@@ -92,7 +105,7 @@ namespace GZ_DQCleaningCompany
         private void receiveOrderButton_Click(object sender, EventArgs e)
         {
 
-            var form = new frmOrder("");
+            var form = new frmOrder(Is_AdminIS);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -126,7 +139,7 @@ namespace GZ_DQCleaningCompany
 
         private void newButton_Click(object sender, EventArgs e)
         {
-          
+
             //var form = new frmOrderMain("");
 
             //if (form.ShowDialog() == DialogResult.OK)

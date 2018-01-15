@@ -25,16 +25,19 @@ namespace GZ_DQCleaningCompany
         private System.Timers.Timer timerAlter1;
         int logis = 0;
         private OrdersControl OrdersControl;
-     
+       bool is_AdminIS;
+
         public frmlogin()
         {
             InitializeComponent();
+            is_AdminIS = false;
             aboutbox = new frmAboutBox();
 
             InitialSystemInfo();
             //se = new Sunisoft.IrisSkin.SkinEngine();
             //se.SkinAllForm = true;
             //se.SkinFile = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ""), "PageColor1.ssk");
+           
 
             InitialPassword();
             ProcessLogger.Fatal("login" + DateTime.Now.ToString());
@@ -245,6 +248,9 @@ namespace GZ_DQCleaningCompany
                         pBBToolStripMenuItem.Enabled = true;
                         修改登录信息ToolStripMenuItem.Enabled = true;
                         logis++;
+                        //是否是管理员
+                        is_AdminIS = true;
+
                     }
                     else
                     {
@@ -288,12 +294,12 @@ namespace GZ_DQCleaningCompany
 
             if (OrdersControl == null)
             {
-                OrdersControl = new OrdersControl(this.txtSAPUserId.Text, this.txtSAPPassword.Text.Trim());
+                OrdersControl = new OrdersControl(this.txtSAPUserId.Text, this.txtSAPPassword.Text.Trim(), is_AdminIS);
                 OrdersControl.FormClosed += new FormClosedEventHandler(FrmOMS_FormClosed);
             }
             if (OrdersControl == null)
             {
-                OrdersControl = new OrdersControl(this.txtSAPUserId.Text, this.txtSAPPassword.Text.Trim());
+                OrdersControl = new OrdersControl(this.txtSAPUserId.Text, this.txtSAPPassword.Text.Trim(), is_AdminIS);
             }
             OrdersControl.Show(this.dockPanel2);
         }
