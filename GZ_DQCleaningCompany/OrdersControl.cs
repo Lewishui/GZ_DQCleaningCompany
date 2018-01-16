@@ -58,12 +58,12 @@ namespace GZ_DQCleaningCompany
         private void button4_Click(object sender, EventArgs e)
         {
 
-            //var form = new frmLogCenter("");
+            var form = new frmLogCenter("");
 
-            //if (form.ShowDialog() == DialogResult.OK)
-            //{
+            if (form.ShowDialog() == DialogResult.OK)
+            {
 
-            //}
+            }
 
         }
 
@@ -168,12 +168,15 @@ namespace GZ_DQCleaningCompany
         private void orderConfirmButton_Click(object sender, EventArgs e)
         {
             //new ConnectServerForReceivedOrderForm().ShowDialog();
-            //var form = new frmProductMain("");
+            Is_AdminIS = true;
 
-            //if (form.ShowDialog() == DialogResult.OK)
-            //{
+            var form = new frmOrder(Is_AdminIS);
 
-            //}
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+
 
 
         }

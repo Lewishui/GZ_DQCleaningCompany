@@ -18,6 +18,14 @@ namespace GZ_DQCleaningCompany
 {
     public partial class frmOrder : Form
     {
+        // 后台执行控件
+        private BackgroundWorker bgWorker;
+        // 消息显示窗体
+        private frmMessageShow frmMessageShow;
+        // 后台操作是否正常完成
+        private bool blnBackGroundWorkIsOK = false;
+        //后加的后台属性显
+        private bool backGroundRunResult;
         DateTime startAt;
         DateTime endAt;
         List<clsOrderinfo> Orderinfolist_Server;
@@ -26,6 +34,7 @@ namespace GZ_DQCleaningCompany
         private SortableBindingList<clsOrderinfo> sortableOrderList;
         List<int> changeindex;
         List<clsOrderinfo> deletedorderList;
+        string prc_folderpath;
 
         private Hashtable dataGridChanges = null;
         private bool is_AdminIS;
@@ -149,6 +158,12 @@ namespace GZ_DQCleaningCompany
 
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (is_AdminIS == false)
+            {
+                MessageBox.Show("普通用户 无权修改单据，如需修改请联系管理员", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
             if (MessageBox.Show(" 确认删除这条信息 , 继续 ?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
 
@@ -400,95 +415,11 @@ namespace GZ_DQCleaningCompany
 
                     #region MyRegion
                     var startAt = this.stockOutDateTimePicker.Value.AddDays(0).Date;
-                    string conditions = "";
+                  
 
                     #region  构造查询条件
-                    if (item.hetongbianhao != null)
-                    {
-                        conditions += " hetongbianhao ='" + item.hetongbianhao + "'";
-                    }
-                    if (item.kehuxingming != null)
-                    {
-                        conditions += " ,kehuxingming ='" + item.kehuxingming + "'";
-                    }
-                    if (item.kehudizhi != null)
-                    {
-                        conditions += " ,kehudizhi ='" + item.kehudizhi + "'";
-                    }
-                    if (item.lianxidianhua != null)
-                    {
-                        conditions += " ,lianxidianhua ='" + item.lianxidianhua + "'";
-                    }
-                    if (item.hetongdaoqishijian != null)
-                    {
-                        conditions += " ,hetongdaoqishijian ='" + item.hetongdaoqishijian + "'";
-                    }
-                    if (item.hetongshichang != null)
-                    {
-                        conditions += " ,hetongshichang ='" + item.hetongshichang + "'";
-                    }
-                    if (item.shishou != null)
-                    {
-                        conditions += " ,shishou ='" + item.shishou + "'";
-                    }
-                    if (item.yuejia != null)
-                    {
-                        conditions += " ,yuejia ='" + item.yuejia + "'";
-                    }
-                    if (item.mianji != null)
-                    {
-                        conditions += " ,mianji ='" + item.mianji + "'";
-                    }
-                    if (item.tixingshoufeishijian != null)
-                    {
-                        conditions += " ,tixingshoufeishijian ='" + item.tixingshoufeishijian + "'";
-                    }
-                    if (item.meiyuanci != null)
-                    {
-                        conditions += " ,meiyuanci ='" + item.meiyuanci + "'";
-                    }
-                    if (item.zongcishu != null)
-                    {
-                        conditions += " ,zongcishu ='" + item.zongcishu + "'";
-                    }
-                    if (item.shengyushu != null)
-                    {
-                        conditions += " ,shengyushu ='" + item.shengyushu + "'";
-                    }
-                    if (item.chaboli != null)
-                    {
-                        conditions += " ,chaboli ='" + item.chaboli + "'";
-                    }
-                    if (item.kehuyaoqiu != null)
-                    {
-                        conditions += " ,kehuyaoqiu ='" + item.kehuyaoqiu + "'";
-                    }
-                    if (item.beizhu != null)
-                    {
-                        conditions += " ,beizhu ='" + item.beizhu + "'";
-                    }
-                    //if (item.xinzeng != null)
-                    //{
-                    //    conditions += " ,xinzeng ='" + item.xinzeng + "'";
-                    //}
-                    if (item.Message != null)
-                    {
-                        conditions += " ,Message ='" + item.Message + "'";
-                    }
-                    if (item.Input_Date != null)
-                    {
-                        conditions += " ,Input_Date ='" + item.Input_Date.ToString("yyyy/MM/dd") + "'";
-                    }
-                    if (item.xinzeng == "true")
-                        conditions = "insert into GZCleaning_Order(hetongbianhao,kehuxingming,kehudizhi,lianxidianhua,hetongdaoqishijian,hetongshichang,shishou,yuejia,mianji,tixingshoufeishijian,meiyuanci,zongcishu,shengyushu,chaboli,kehuyaoqiu,beizhu,Input_Date,Message) values ('" + item.hetongbianhao + "','" + item.kehuxingming + "','" + item.kehudizhi + "','" + item.lianxidianhua + "','" + item.hetongdaoqishijian + "','" + item.hetongshichang + "','" + item.shishou + "','" + item.yuejia + "','" + item.mianji + "','" + item.tixingshoufeishijian + "','" + item.meiyuanci + "','" + item.zongcishu + "','" + item.shengyushu + "','" + item.chaboli + "','" + item.kehuyaoqiu + "','" + item.beizhu + "','" + item.Input_Date.ToString("yyyy/MM/dd") + "','" + item.Message + "')";
-                    else if (is_AdminIS == true)
-                        conditions = "update GZCleaning_Order set  " + conditions + " where order_id = " + item.order_id + " ";
-                    else if (is_AdminIS == false)
-                    {
-                        //MessageBox.Show("您是普通用户 无权修改单据，如需修改请联系管理员", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        e.Result = "[" + item.kehuxingming + "]普通用户无权修改单据，如需修改请联系管理员";
-                        throw new Exception("[" + item.kehuxingming + "]普通用户 无权修改单据，如需修改请联系管理员");
-                    }
+                    string conditions = "";
+                    conditions = sql_yuju(e, item, conditions);
                     // conditions += " order by Id desc";
                     #endregion
                     #endregion
@@ -517,6 +448,96 @@ namespace GZ_DQCleaningCompany
             }
 
             return success;
+        }
+
+        private string sql_yuju(DoWorkEventArgs e, clsOrderinfo item, string conditions)
+        {
+            if (item.hetongbianhao != null)
+            {
+                conditions += " hetongbianhao ='" + item.hetongbianhao + "'";
+            }
+            if (item.kehuxingming != null)
+            {
+                conditions += " ,kehuxingming ='" + item.kehuxingming + "'";
+            }
+            if (item.kehudizhi != null)
+            {
+                conditions += " ,kehudizhi ='" + item.kehudizhi + "'";
+            }
+            if (item.lianxidianhua != null)
+            {
+                conditions += " ,lianxidianhua ='" + item.lianxidianhua + "'";
+            }
+            if (item.hetongdaoqishijian != null)
+            {
+                conditions += " ,hetongdaoqishijian ='" + item.hetongdaoqishijian + "'";
+            }
+            if (item.hetongshichang != null)
+            {
+                conditions += " ,hetongshichang ='" + item.hetongshichang + "'";
+            }
+            if (item.shishou != null)
+            {
+                conditions += " ,shishou ='" + item.shishou + "'";
+            }
+            if (item.yuejia != null)
+            {
+                conditions += " ,yuejia ='" + item.yuejia + "'";
+            }
+            if (item.mianji != null)
+            {
+                conditions += " ,mianji ='" + item.mianji + "'";
+            }
+            if (item.tixingshoufeishijian != null)
+            {
+                conditions += " ,tixingshoufeishijian ='" + item.tixingshoufeishijian + "'";
+            }
+            if (item.meiyuanci != null)
+            {
+                conditions += " ,meiyuanci ='" + item.meiyuanci + "'";
+            }
+            if (item.zongcishu != null)
+            {
+                conditions += " ,zongcishu ='" + item.zongcishu + "'";
+            }
+            if (item.shengyushu != null)
+            {
+                conditions += " ,shengyushu ='" + item.shengyushu + "'";
+            }
+            if (item.chaboli != null)
+            {
+                conditions += " ,chaboli ='" + item.chaboli + "'";
+            }
+            if (item.kehuyaoqiu != null)
+            {
+                conditions += " ,kehuyaoqiu ='" + item.kehuyaoqiu + "'";
+            }
+            if (item.beizhu != null)
+            {
+                conditions += " ,beizhu ='" + item.beizhu + "'";
+            }
+            //if (item.xinzeng != null)
+            //{
+            //    conditions += " ,xinzeng ='" + item.xinzeng + "'";
+            //}
+            if (item.Message != null)
+            {
+                conditions += " ,Message ='" + item.Message + "'";
+            }
+            if (item.Input_Date != null)
+            {
+                conditions += " ,Input_Date ='" + item.Input_Date.ToString("yyyy/MM/dd") + "'";
+            }
+            if (item.xinzeng == "true")
+                conditions = "insert into GZCleaning_Order(hetongbianhao,kehuxingming,kehudizhi,lianxidianhua,hetongdaoqishijian,hetongshichang,shishou,yuejia,mianji,tixingshoufeishijian,meiyuanci,zongcishu,shengyushu,chaboli,kehuyaoqiu,beizhu,Input_Date,Message) values ('" + item.hetongbianhao + "','" + item.kehuxingming + "','" + item.kehudizhi + "','" + item.lianxidianhua + "','" + item.hetongdaoqishijian + "','" + item.hetongshichang + "','" + item.shishou + "','" + item.yuejia + "','" + item.mianji + "','" + item.tixingshoufeishijian + "','" + item.meiyuanci + "','" + item.zongcishu + "','" + item.shengyushu + "','" + item.chaboli + "','" + item.kehuyaoqiu + "','" + item.beizhu + "','" + item.Input_Date.ToString("yyyy/MM/dd") + "','" + item.Message + "')";
+            else if (is_AdminIS == true)
+                conditions = "update GZCleaning_Order set  " + conditions + " where order_id = " + item.order_id + " ";
+            else if (is_AdminIS == false)
+            {
+                e.Result = "[" + item.kehuxingming + "]普通用户无权修改单据，如需修改请联系管理员";
+                throw new Exception("[" + item.kehuxingming + "]普通用户 无权修改单据，如需修改请联系管理员");
+            }
+            return conditions;
         }
 
         private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -626,6 +647,138 @@ namespace GZ_DQCleaningCompany
         {
             this.Close();
         }
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                blnBackGroundWorkIsOK = false;
+            }
+            else if (e.Cancelled)
+            {
+                blnBackGroundWorkIsOK = true;
+            }
+            else
+            {
+                blnBackGroundWorkIsOK = true;
+            }
+        }
+        private void InitialBackGroundWorker()
+        {
+            bgWorker = new BackgroundWorker();
+            bgWorker.WorkerReportsProgress = true;
+            bgWorker.WorkerSupportsCancellation = true;
+            bgWorker.RunWorkerCompleted +=
+                new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
+            bgWorker.ProgressChanged +=
+                new ProgressChangedEventHandler(bgWorker_ProgressChanged);
+        }
+        private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (frmMessageShow != null && frmMessageShow.Visible == true)
+            {
+                //设置显示的消息
+                frmMessageShow.setMessage(e.UserState.ToString());
+                //设置显示的按钮文字
+                if (e.ProgressPercentage == clsConstant.Thread_Progress_OK)
+                {
+                    frmMessageShow.setStatus(clsConstant.Dialog_Status_Enable);
+                }
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            prc_folderpath = "";
+
+            OpenFileDialog tbox = new OpenFileDialog();
+            tbox.Multiselect = false;
+            tbox.Filter = "Excel Files(*.xls,*.xlsx,*.xlsm,*.xlsb)|*.xls;*.xlsx;*.xlsm;*.xlsb";
+            if (tbox.ShowDialog() == DialogResult.OK)
+            {
+                prc_folderpath = tbox.FileName;
+            }
+            if (prc_folderpath == null || prc_folderpath == "")
+                return;
+            if (MessageBox.Show("是否继续上传 ?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+            }
+            else
+                return;
+
+
+            try
+            {
+
+                InitialBackGroundWorker();
+                bgWorker.DoWork += new DoWorkEventHandler(CheckCaseList);
+
+                bgWorker.RunWorkerAsync();
+                // 启动消息显示画面
+                frmMessageShow = new frmMessageShow(clsShowMessage.MSG_001,
+                                                    clsShowMessage.MSG_007,
+                                                    clsConstant.Dialog_Status_Disable);
+                frmMessageShow.ShowDialog();
+                // 数据读取成功后在画面显示
+                if (blnBackGroundWorkIsOK)
+                {
+                    this.dataGridView1.DataSource = null;
+
+                    this.dataGridView1.AutoGenerateColumns = false;
+                    if (Orderinfolist_Server != null)
+                    {
+                        sortableOrderList = new SortableBindingList<clsOrderinfo>(Orderinfolist_Server);
+                        bindingSource1.DataSource = new SortableBindingList<clsOrderinfo>(Orderinfolist_Server);
+
+                        this.dataGridView1.DataSource = bindingSource1;
+
+                        this.toolStripLabel1.Text = "条目： " + Orderinfolist_Server.Count;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("12320" + ex);
+                return;
+
+                throw ex;
+            }
+        }
+        private void CheckCaseList(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                Orderinfolist_Server = new List<clsOrderinfo>();
+
+                //初始化信息
+                clsAllnew BusinessHelp = new clsAllnew();
+
+                DateTime oldDate = DateTime.Now;
+                Orderinfolist_Server = BusinessHelp.Readexcel(ref this.bgWorker, prc_folderpath);
+                foreach (clsOrderinfo item in Orderinfolist_Server)
+                {
+                    item.xinzeng = "true";
+
+                    string conditions = "";
+                    conditions = sql_yuju(e, item, conditions);
+                    int isrun = BusinessHelp.updatecustomer_Server(conditions);
+                    item.xinzeng = "false";
+                }
+                DateTime FinishTime = DateTime.Now;
+                TimeSpan s = DateTime.Now - oldDate;
+                string timei = s.Minutes.ToString() + ":" + s.Seconds.ToString();
+                string Showtime = clsShowMessage.MSG_029 + timei.ToString();
+                bgWorker.ReportProgress(clsConstant.Thread_Progress_OK, clsShowMessage.MSG_009 + "\r\n" + Showtime);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("12320" + ex);
+                return;
+
+                throw;
+            }
+        }
+
 
     }
 }

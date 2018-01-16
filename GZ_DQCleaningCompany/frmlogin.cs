@@ -311,5 +311,20 @@ namespace GZ_DQCleaningCompany
             }
         }
 
+        private void 查询信息ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new frmLogCenter("");
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void eToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

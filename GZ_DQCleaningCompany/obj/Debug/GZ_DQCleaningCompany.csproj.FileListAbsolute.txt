@@ -31,3 +31,5 @@ C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司�
 C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.OrdersControl.resources
 C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmAddOrder.resources
 C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmOrder.resources
+C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmMessageShow.resources
+C:\mysteap\work_office\ProjectOut\GZ贵州诚德清洁服务管理有限公司客户专员数据\GZ_DQCleaningCompany\GZ_DQCleaningCompany\obj\Debug\GZ_DQCleaningCompany.frmLogCenter.resources

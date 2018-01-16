@@ -64,4 +64,42 @@ namespace Order.DB
    
 
     }
+
+    public class clsR2accrualsapinfo
+    {
+        public string Message { get; set; }
+        public int Id { get; set; }
+        public string Input_Date { get; set; }
+        public string yiqingxiangmu { get; set; }
+        public string jizhangriqi { get; set; }
+        public string pingzhengriqi { get; set; }
+        public string nashuidanwei { get; set; }
+        public string lirunzhongxin { get; set; }
+        public string benbijine { get; set; }
+        public string wenben { get; set; }
+        public string pingzhengleixing { get; set; }
+        public string jizhangdaima { get; set; }
+        public string pingzhenghaoma { get; set; }
+        public string benbi { get; set; }
+        public string qingzhangpingzheng { get; set; }
+        public string glkemu { get; set; }
+        public string nianduyuefen { get; set; }
+        public string yonghumingcheng { get; set; }
+        public string congxiao { get; set; }
+        //
+        public string leiming { get; set; }
+
+        public string xuhao { get; set; }
+        public string gaiyao { get; set; }
+        //gongsidaima
+        public string gongsidaima { get; set; }
+        //
+        //faren
+        public string faren { get; set; }
+        //选择要分析的日期
+        public string selecttime { get; set; }
+        // 标记已计算过的KA 
+        public string is_mergeKA { get; set; }
+    }
+  
 }

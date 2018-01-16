@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SQLite;
@@ -26,6 +27,10 @@ namespace Order.Buiness
         #endregion
         private string dataSource = "CDCompanyData.sqlite";
         string newsth;
+        public BackgroundWorker bgWorker1;
+
+        public ToolStripProgressBar pbStatus { get; set; }
+        public ToolStripStatusLabel tsStatusLabel1 { get; set; }
 
         public clsAllnew()
         {
@@ -190,7 +195,7 @@ namespace Order.Buiness
 
         public int updatecustomer_Server(string findtext)
         {
-        
+
             int isrun = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, findtext, CommandType.Text, null);
 
             return isrun;
@@ -434,6 +439,146 @@ namespace Order.Buiness
             return isrun;
 
         }
+        public List<clsOrderinfo> Readexcel(ref BackgroundWorker bgWorker, string filepaht)
+        {
+            try
+            {
+                //读取关键字
+                //string ZFCEPath = AppDomain.CurrentDomain.BaseDirectory + "Resources\\KEY\\ELAND.xlsx";
 
+                List<clsOrderinfo> KEYResult = Read_Excel(filepaht);
+
+
+                return KEYResult;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("异常" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+                throw;
+            }
+
+        }
+        public List<clsOrderinfo> Read_Excel(string Alist)
+        {
+
+            List<clsOrderinfo> MAPPINGResult = new List<clsOrderinfo>();
+            try
+            {
+
+                System.Globalization.CultureInfo CurrentCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                Microsoft.Office.Interop.Excel.Application excelApp;
+                {
+                    string path = Alist;
+                    excelApp = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel.Workbook analyWK = excelApp.Workbooks.Open(path, Type.Missing, Type.Missing, Type.Missing,
+                        "htc", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                        Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+                    Microsoft.Office.Interop.Excel.Worksheet WS = (Microsoft.Office.Interop.Excel.Worksheet)analyWK.Worksheets["总表"];
+                    Microsoft.Office.Interop.Excel.Range rng;
+                    rng = WS.Range[WS.Cells[1, 1], WS.Cells[WS.UsedRange.Rows.Count, 26]];
+                    int rowCount = WS.UsedRange.Rows.Count - 1;
+                    object[,] o = new object[1, 1];
+                    o = (object[,])rng.Value2;
+                    int wscount = analyWK.Worksheets.Count;
+                    clsCommHelp.CloseExcel(excelApp, analyWK);
+                    for (int i = 5; i <= rowCount; i++)
+                    {
+                        clsOrderinfo temp = new clsOrderinfo();
+
+                        #region 基础信息
+
+                        temp.hetongbianhao = "";
+                        if (o[i, 1] != null)
+                            temp.hetongbianhao = o[i, 1].ToString().Trim();
+
+                        temp.kehuxingming = "";
+                        if (o[i, 2] != null)
+                            temp.kehuxingming = o[i, 2].ToString().Trim();
+
+                        if (temp.kehuxingming == null || temp.kehuxingming == "")
+                            break;
+
+                        temp.kehudizhi = "";
+                        if (o[i, 3] != null)
+                            temp.kehudizhi = o[i, 3].ToString().Trim();
+
+
+                        temp.lianxidianhua = "";
+                        if (o[i, 4] != null)
+                            temp.lianxidianhua = o[i, 4].ToString().Trim();
+
+                        temp.hetongdaoqishijian = "";
+                        if (o[i, 5] != null)
+                            temp.hetongdaoqishijian = o[i, 5].ToString().Trim();
+
+                        temp.hetongshichang = "";
+                        if (o[i, 6] != null)
+                            temp.hetongshichang = o[i, 6].ToString().Trim();
+                        temp.shishou = "";
+                        if (o[i, 7] != null)
+                            temp.shishou = o[i, 7].ToString().Trim();
+
+                        temp.yuejia = "";
+                        if (o[i, 8] != null)
+                            temp.yuejia = o[i, 8].ToString().Trim();
+
+
+                        temp.mianji = "";
+                        if (o[i, 9] != null)
+                            temp.mianji = o[i, 9].ToString().Trim();
+
+                        temp.tixingshoufeishijian = "";
+                        if (o[i, 10] != null)
+                            temp.tixingshoufeishijian = o[i, 10].ToString().Trim();
+
+
+                        temp.meiyuanci = "";
+                        if (o[i, 11] != null)
+                            temp.meiyuanci = o[i, 11].ToString().Trim();
+
+                        temp.zongcishu = "";
+                        if (o[i, 12] != null)
+                            temp.zongcishu = o[i, 12].ToString().Trim();
+
+                        temp.shengyushu = "";
+                        if (o[i, 13] != null)
+                            temp.shengyushu = o[i, 13].ToString().Trim();
+
+                        temp.chaboli = "";
+                        if (o[i, 14] != null)
+                            temp.chaboli = o[i, 14].ToString().Trim();
+
+                        temp.kehuyaoqiu = "";
+                        if (o[i, 15] != null)
+                            temp.kehuyaoqiu = o[i, 15].ToString().Trim();
+
+                        temp.beizhu = "";
+                        if (o[i, 16] != null)
+                            temp.beizhu = o[i, 16].ToString().Trim();
+
+                        //
+
+                        temp.Input_Date = DateTime.Now;
+
+                        #endregion
+                        MAPPINGResult.Add(temp);
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: 01032 表格维护有误，请重新检查格式及命名！");
+                return null;
+
+                throw;
+            }
+            return MAPPINGResult;
+
+        }
     }
 }

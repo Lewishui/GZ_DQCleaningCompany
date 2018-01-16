@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrder));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -57,32 +57,33 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.Input_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.xinzeng = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.beizhu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kehuyaoqiu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chaboli = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shengyushu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zongcishu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.meiyuanci = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tixingshoufeishijian = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mianji = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.yuejia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shishou = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hetongshichang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hetongdaoqishijian = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lianxidianhua = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kehudizhi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kehuxingming = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hetongbianhao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.xuhao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.newButton = new System.Windows.Forms.Button();
             this.delScheduleButton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.xuhao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hetongbianhao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kehuxingming = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kehudizhi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lianxidianhua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hetongdaoqishijian = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hetongshichang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shishou = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yuejia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mianji = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tixingshoufeishijian = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.meiyuanci = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.zongcishu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shengyushu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chaboli = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kehuyaoqiu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.beizhu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xinzeng = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Input_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -91,8 +92,8 @@
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -269,7 +270,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton3,
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -344,192 +346,6 @@
             this.tabPage1.Text = "主页";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // Input_Date
-            // 
-            this.Input_Date.DataPropertyName = "Input_Date";
-            this.Input_Date.HeaderText = "添加时间";
-            this.Input_Date.Name = "Input_Date";
-            // 
-            // order_id
-            // 
-            this.order_id.DataPropertyName = "order_id";
-            this.order_id.HeaderText = "order_id";
-            this.order_id.Name = "order_id";
-            this.order_id.Visible = false;
-            // 
-            // xinzeng
-            // 
-            this.xinzeng.DataPropertyName = "xinzeng";
-            this.xinzeng.HeaderText = "新增";
-            this.xinzeng.Name = "xinzeng";
-            // 
-            // beizhu
-            // 
-            this.beizhu.DataPropertyName = "beizhu";
-            this.beizhu.HeaderText = "备注";
-            this.beizhu.Name = "beizhu";
-            // 
-            // kehuyaoqiu
-            // 
-            this.kehuyaoqiu.DataPropertyName = "kehuyaoqiu";
-            this.kehuyaoqiu.HeaderText = "客户要求";
-            this.kehuyaoqiu.Name = "kehuyaoqiu";
-            // 
-            // chaboli
-            // 
-            this.chaboli.DataPropertyName = "chaboli";
-            this.chaboli.HeaderText = "擦玻璃";
-            this.chaboli.Name = "chaboli";
-            // 
-            // shengyushu
-            // 
-            this.shengyushu.DataPropertyName = "shengyushu";
-            this.shengyushu.HeaderText = "剩余数";
-            this.shengyushu.Name = "shengyushu";
-            // 
-            // zongcishu
-            // 
-            this.zongcishu.DataPropertyName = "zongcishu";
-            this.zongcishu.HeaderText = "总次数";
-            this.zongcishu.Name = "zongcishu";
-            // 
-            // meiyuanci
-            // 
-            this.meiyuanci.DataPropertyName = "meiyuanci";
-            this.meiyuanci.HeaderText = "每月次";
-            this.meiyuanci.Name = "meiyuanci";
-            // 
-            // tixingshoufeishijian
-            // 
-            this.tixingshoufeishijian.DataPropertyName = "tixingshoufeishijian";
-            this.tixingshoufeishijian.HeaderText = "提醒收费时间";
-            this.tixingshoufeishijian.Name = "tixingshoufeishijian";
-            // 
-            // mianji
-            // 
-            this.mianji.DataPropertyName = "mianji";
-            this.mianji.HeaderText = "面积/m²";
-            this.mianji.Name = "mianji";
-            // 
-            // yuejia
-            // 
-            this.yuejia.DataPropertyName = "yuejia";
-            this.yuejia.HeaderText = "月价/元";
-            this.yuejia.Name = "yuejia";
-            // 
-            // shishou
-            // 
-            this.shishou.DataPropertyName = "shishou";
-            this.shishou.HeaderText = "实收/元";
-            this.shishou.Name = "shishou";
-            // 
-            // hetongshichang
-            // 
-            this.hetongshichang.DataPropertyName = "hetongshichang";
-            this.hetongshichang.HeaderText = "合同时长";
-            this.hetongshichang.Name = "hetongshichang";
-            // 
-            // hetongdaoqishijian
-            // 
-            this.hetongdaoqishijian.DataPropertyName = "hetongdaoqishijian";
-            this.hetongdaoqishijian.HeaderText = "合同到期时间";
-            this.hetongdaoqishijian.Name = "hetongdaoqishijian";
-            // 
-            // lianxidianhua
-            // 
-            this.lianxidianhua.DataPropertyName = "lianxidianhua";
-            this.lianxidianhua.HeaderText = "联系电话";
-            this.lianxidianhua.Name = "lianxidianhua";
-            // 
-            // kehudizhi
-            // 
-            this.kehudizhi.DataPropertyName = "kehudizhi";
-            this.kehudizhi.HeaderText = "客户住址";
-            this.kehudizhi.Name = "kehudizhi";
-            // 
-            // kehuxingming
-            // 
-            this.kehuxingming.DataPropertyName = "kehuxingming";
-            this.kehuxingming.HeaderText = "客户姓名";
-            this.kehuxingming.Name = "kehuxingming";
-            // 
-            // hetongbianhao
-            // 
-            this.hetongbianhao.DataPropertyName = "hetongbianhao";
-            this.hetongbianhao.HeaderText = "合同编号";
-            this.hetongbianhao.Name = "hetongbianhao";
-            // 
-            // Message
-            // 
-            this.Message.DataPropertyName = "Message";
-            this.Message.HeaderText = "提醒";
-            this.Message.Name = "Message";
-            // 
-            // xuhao
-            // 
-            this.xuhao.HeaderText = "序号";
-            this.xuhao.Name = "xuhao";
-            this.xuhao.Width = 40;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.xuhao,
-            this.Message,
-            this.hetongbianhao,
-            this.kehuxingming,
-            this.kehudizhi,
-            this.lianxidianhua,
-            this.hetongdaoqishijian,
-            this.hetongshichang,
-            this.shishou,
-            this.yuejia,
-            this.mianji,
-            this.tixingshoufeishijian,
-            this.meiyuanci,
-            this.zongcishu,
-            this.shengyushu,
-            this.chaboli,
-            this.kehuyaoqiu,
-            this.beizhu,
-            this.xinzeng,
-            this.order_id,
-            this.Input_Date});
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 95);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(848, 325);
-            this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
-            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
-            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
-            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
@@ -563,6 +379,201 @@
             this.delScheduleButton.UseVisualStyleBackColor = true;
             this.delScheduleButton.Click += new System.EventHandler(this.delScheduleButton_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.xuhao,
+            this.Message,
+            this.hetongbianhao,
+            this.kehuxingming,
+            this.kehudizhi,
+            this.lianxidianhua,
+            this.hetongdaoqishijian,
+            this.hetongshichang,
+            this.shishou,
+            this.yuejia,
+            this.mianji,
+            this.tixingshoufeishijian,
+            this.meiyuanci,
+            this.zongcishu,
+            this.shengyushu,
+            this.chaboli,
+            this.kehuyaoqiu,
+            this.beizhu,
+            this.xinzeng,
+            this.order_id,
+            this.Input_Date});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 95);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(848, 325);
+            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
+            // 
+            // xuhao
+            // 
+            this.xuhao.HeaderText = "序号";
+            this.xuhao.Name = "xuhao";
+            this.xuhao.Width = 40;
+            // 
+            // Message
+            // 
+            this.Message.DataPropertyName = "Message";
+            this.Message.HeaderText = "提醒";
+            this.Message.Name = "Message";
+            // 
+            // hetongbianhao
+            // 
+            this.hetongbianhao.DataPropertyName = "hetongbianhao";
+            this.hetongbianhao.HeaderText = "合同编号";
+            this.hetongbianhao.Name = "hetongbianhao";
+            // 
+            // kehuxingming
+            // 
+            this.kehuxingming.DataPropertyName = "kehuxingming";
+            this.kehuxingming.HeaderText = "客户姓名";
+            this.kehuxingming.Name = "kehuxingming";
+            // 
+            // kehudizhi
+            // 
+            this.kehudizhi.DataPropertyName = "kehudizhi";
+            this.kehudizhi.HeaderText = "客户住址";
+            this.kehudizhi.Name = "kehudizhi";
+            // 
+            // lianxidianhua
+            // 
+            this.lianxidianhua.DataPropertyName = "lianxidianhua";
+            this.lianxidianhua.HeaderText = "联系电话";
+            this.lianxidianhua.Name = "lianxidianhua";
+            // 
+            // hetongdaoqishijian
+            // 
+            this.hetongdaoqishijian.DataPropertyName = "hetongdaoqishijian";
+            this.hetongdaoqishijian.HeaderText = "合同到期时间";
+            this.hetongdaoqishijian.Name = "hetongdaoqishijian";
+            // 
+            // hetongshichang
+            // 
+            this.hetongshichang.DataPropertyName = "hetongshichang";
+            this.hetongshichang.HeaderText = "合同时长";
+            this.hetongshichang.Name = "hetongshichang";
+            // 
+            // shishou
+            // 
+            this.shishou.DataPropertyName = "shishou";
+            this.shishou.HeaderText = "实收/元";
+            this.shishou.Name = "shishou";
+            // 
+            // yuejia
+            // 
+            this.yuejia.DataPropertyName = "yuejia";
+            this.yuejia.HeaderText = "月价/元";
+            this.yuejia.Name = "yuejia";
+            // 
+            // mianji
+            // 
+            this.mianji.DataPropertyName = "mianji";
+            this.mianji.HeaderText = "面积/m²";
+            this.mianji.Name = "mianji";
+            // 
+            // tixingshoufeishijian
+            // 
+            this.tixingshoufeishijian.DataPropertyName = "tixingshoufeishijian";
+            this.tixingshoufeishijian.HeaderText = "提醒收费时间";
+            this.tixingshoufeishijian.Name = "tixingshoufeishijian";
+            // 
+            // meiyuanci
+            // 
+            this.meiyuanci.DataPropertyName = "meiyuanci";
+            this.meiyuanci.HeaderText = "每月次";
+            this.meiyuanci.Name = "meiyuanci";
+            // 
+            // zongcishu
+            // 
+            this.zongcishu.DataPropertyName = "zongcishu";
+            this.zongcishu.HeaderText = "总次数";
+            this.zongcishu.Name = "zongcishu";
+            // 
+            // shengyushu
+            // 
+            this.shengyushu.DataPropertyName = "shengyushu";
+            this.shengyushu.HeaderText = "剩余数";
+            this.shengyushu.Name = "shengyushu";
+            // 
+            // chaboli
+            // 
+            this.chaboli.DataPropertyName = "chaboli";
+            this.chaboli.HeaderText = "擦玻璃";
+            this.chaboli.Name = "chaboli";
+            // 
+            // kehuyaoqiu
+            // 
+            this.kehuyaoqiu.DataPropertyName = "kehuyaoqiu";
+            this.kehuyaoqiu.HeaderText = "客户要求";
+            this.kehuyaoqiu.Name = "kehuyaoqiu";
+            // 
+            // beizhu
+            // 
+            this.beizhu.DataPropertyName = "beizhu";
+            this.beizhu.HeaderText = "备注";
+            this.beizhu.Name = "beizhu";
+            // 
+            // xinzeng
+            // 
+            this.xinzeng.DataPropertyName = "xinzeng";
+            this.xinzeng.HeaderText = "新增";
+            this.xinzeng.Name = "xinzeng";
+            // 
+            // order_id
+            // 
+            this.order_id.DataPropertyName = "order_id";
+            this.order_id.HeaderText = "order_id";
+            this.order_id.Name = "order_id";
+            this.order_id.Visible = false;
+            // 
+            // Input_Date
+            // 
+            this.Input_Date.DataPropertyName = "Input_Date";
+            this.Input_Date.HeaderText = "添加时间";
+            this.Input_Date.Name = "Input_Date";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(79, 25);
+            this.toolStripButton4.Text = "导入";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,8 +594,8 @@
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -642,5 +653,6 @@
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button delScheduleButton;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }
