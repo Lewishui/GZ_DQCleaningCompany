@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>7 %282%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common">
       <HintPath>..\Reference\Common.dll</HintPath>
@@ -220,6 +223,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user 5c.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="7 %282%29.ico" />
+    <Content Include="home.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

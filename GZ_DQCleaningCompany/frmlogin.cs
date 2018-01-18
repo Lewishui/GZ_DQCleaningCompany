@@ -171,7 +171,7 @@ namespace GZ_DQCleaningCompany
             string endday = DateTime.Now.ToString("yyyy/MM/dd");
             dt3 = Convert.ToDateTime(endday);
             DateTime dt2;
-            dt2 = Convert.ToDateTime("2018/02/01");
+            dt2 = Convert.ToDateTime("2018/01/23");
 
             TimeSpan ts = dt2 - dt3;
             int timeTotal = ts.Days;
@@ -233,12 +233,12 @@ namespace GZ_DQCleaningCompany
 
 
 
-                if (userlist_Server[0].Btype == "lock")
+                if (userlist_Server.Count>0&&userlist_Server[0].Btype == "lock")
                 {
                     MessageBox.Show("登录失败,账户已被锁定，请重试或联系系统管理员，谢谢", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-                if (userlist_Server[0].password.ToString().Trim() == pass.Trim() && userlist_Server[0].name.ToString().Trim() == user.Trim())
+                if (userlist_Server.Count > 0 && userlist_Server[0].password.ToString().Trim() == pass.Trim() && userlist_Server[0].name.ToString().Trim() == user.Trim())
                     if (userlist_Server[0].AdminIS == "true")
                     {
                         toolStripDropDownButton1.Enabled = true;

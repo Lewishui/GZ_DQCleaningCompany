@@ -34,7 +34,7 @@ namespace Order.Buiness
 
         public clsAllnew()
         {
-            newsth = AppDomain.CurrentDomain.BaseDirectory + "" + dataSource;
+            newsth = AppDomain.CurrentDomain.BaseDirectory + "System\\" + dataSource;
 
 
 
