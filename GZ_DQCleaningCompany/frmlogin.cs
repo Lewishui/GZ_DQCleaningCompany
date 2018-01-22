@@ -171,16 +171,16 @@ namespace GZ_DQCleaningCompany
             string endday = DateTime.Now.ToString("yyyy/MM/dd");
             dt3 = Convert.ToDateTime(endday);
             DateTime dt2;
-            dt2 = Convert.ToDateTime("2018/01/23");
+            dt2 = Convert.ToDateTime("2018/08/11");
 
             TimeSpan ts = dt2 - dt3;
             int timeTotal = ts.Days;
             if (timeTotal < 0)
             {
-                MessageBox.Show("Please Contact your administrator !");
+                MessageBox.Show("六个月运行期已到，请将剩余费用付清 !");
                 return;
             }
-            MessageBox.Show("当前为测试系统 !");
+           
 
             #endregion
             try
@@ -322,6 +322,11 @@ namespace GZ_DQCleaningCompany
         }
 
         private void eToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dockPanel2_ActiveContentChanged(object sender, EventArgs e)
         {
 
         }
