@@ -48,6 +48,8 @@ namespace GZ_DQCleaningCompany
             changeindex = new List<int>();
             Orderinfolist_Server = new List<clsOrderinfo>();
             deletedorderList = new List<clsOrderinfo>();
+
+
             this.BindDataGridView();
 
             this.WindowState = FormWindowState.Maximized;
@@ -305,6 +307,7 @@ namespace GZ_DQCleaningCompany
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
+
             DataGridViewRow dgrSingle = dataGridView1.Rows[e.RowIndex];
             string cell_key = e.RowIndex.ToString() + "_" + e.ColumnIndex.ToString();
 
@@ -324,6 +327,19 @@ namespace GZ_DQCleaningCompany
                 e.CellStyle.SelectionBackColor = Color.DarkRed;
 
             }
+
+
+            if (e.ColumnIndex == 18 && is_AdminIS == false)//
+            {
+                //string xinzeng = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["xinzeng"].EditedFormattedValue.ToString());
+                //if (xinzeng != "true")
+                //{
+                //    dataGridView1.Rows[e.RowIndex].ReadOnly = true;
+                //    dataGridView1.Rows[e.RowIndex].Cells["shengyushu"].ReadOnly = false;
+                //}
+                //return;
+
+            }
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -332,6 +348,18 @@ namespace GZ_DQCleaningCompany
             string cell_key = e.RowIndex.ToString() + "_" + e.ColumnIndex.ToString();
             var new_cell_value = row.Cells[e.ColumnIndex].Value;
             var original_cell_value = dataGridChanges[cell_key];
+            #region    //判断如果 当前修改的 比之前数据 大的话不让修改
+
+            if (new_cell_value != null && original_cell_value != null && e.ColumnIndex == 14 && is_AdminIS == false)
+                if (Convert.ToInt32(new_cell_value) > Convert.ToInt32(original_cell_value))
+                {
+                    MessageBox.Show("信息填写不符合要求！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    dataGridView1.Rows[e.RowIndex].Cells["shengyushu"].Value = original_cell_value;
+
+                    return;
+                }
+            #endregion
             // original_cell_value could null
             //Console.WriteLine(" original = {0} {3}, new ={1} {4}, compare = {2}, {5}", original_cell_value, new_cell_value, original_cell_value == new_cell_value, original_cell_value.GetType(), new_cell_value.GetType(), new_cell_value.Equals(original_cell_value));
             if (new_cell_value == null && original_cell_value == null)
@@ -415,7 +443,7 @@ namespace GZ_DQCleaningCompany
 
                     #region MyRegion
                     var startAt = this.stockOutDateTimePicker.Value.AddDays(0).Date;
-                  
+
 
                     #region  构造查询条件
                     string conditions = "";
@@ -452,6 +480,7 @@ namespace GZ_DQCleaningCompany
 
         private string sql_yuju(DoWorkEventArgs e, clsOrderinfo item, string conditions)
         {
+            string unsal = conditions;
             if (item.hetongbianhao != null)
             {
                 conditions += " hetongbianhao ='" + item.hetongbianhao + "'";
@@ -534,8 +563,17 @@ namespace GZ_DQCleaningCompany
                 conditions = "update GZCleaning_Order set  " + conditions + " where order_id = " + item.order_id + " ";
             else if (is_AdminIS == false)
             {
-                e.Result = "[" + item.kehuxingming + "]普通用户无权修改单据，如需修改请联系管理员";
-                throw new Exception("[" + item.kehuxingming + "]普通用户 无权修改单据，如需修改请联系管理员");
+
+                if (item.shengyushu != null)
+                {
+                    unsal += "shengyushu ='" + item.shengyushu + "'";
+                }
+                unsal = "update GZCleaning_Order set  " + unsal + " where order_id = " + item.order_id + " ";
+
+                return unsal;
+
+                //e.Result = "[" + item.kehuxingming + "]普通用户无权修改单据，如需修改请联系管理员";
+                //throw new Exception("[" + item.kehuxingming + "]普通用户 无权修改单据，如需修改请联系管理员");
             }
             return conditions;
         }
@@ -776,6 +814,23 @@ namespace GZ_DQCleaningCompany
                 return;
 
                 throw;
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewColumn column = dataGridView1.Columns[e.ColumnIndex];
+            string _kehuxingming = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["kehuxingming"].EditedFormattedValue.ToString());
+
+            if (column == kehuxingming)
+            {
+                var form = new frmClient_status(is_AdminIS, _kehuxingming);
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+
             }
         }
 

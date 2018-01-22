@@ -580,5 +580,61 @@ namespace Order.Buiness
             return MAPPINGResult;
 
         }
+
+
+        public List<cls_kehucishufashengshijian_info> findStatus(string findtext)
+        {
+
+            SQLiteConnection dbConn = new SQLiteConnection("Data Source=" + dataSource);
+
+            dbConn.Open();
+            SQLiteCommand dbCmd = dbConn.CreateCommand();
+            dbCmd.CommandText = findtext;
+
+            DbDataReader reader = SQLiteHelper.ExecuteReader("Data Source=" + newsth, dbCmd);
+            List<cls_kehucishufashengshijian_info> ClaimReport_Server = new List<cls_kehucishufashengshijian_info>();
+
+            while (reader.Read())
+            {
+                cls_kehucishufashengshijian_info item = new cls_kehucishufashengshijian_info();
+
+                item.status_id = reader.GetInt32(0);
+                if (reader.GetValue(1) != null && Convert.ToString(reader.GetValue(1)) != "")
+                    item.kehuxingming = reader.GetString(1);
+                if (reader.GetValue(2) != null && Convert.ToString(reader.GetValue(2)) != "")
+                    item.shangcichugongshijian = Convert.ToString(reader.GetString(2));
+                if (reader.GetValue(3) != null && Convert.ToString(reader.GetValue(3)) != "")
+                    item.shangcichugongbaojie = reader.GetString(3);
+                if (reader.GetValue(4) != null && Convert.ToString(reader.GetValue(4)) != "")
+
+                    item.kehupingjia = reader.GetString(4);
+                if (reader.GetValue(5) != null && Convert.ToString(reader.GetValue(5)) != "")
+
+                    item.beizhu = reader.GetString(5);
+               
+
+                if (reader.GetValue(6) != null && Convert.ToString(reader.GetValue(6)) != "")
+                    item.Input_Date = Convert.ToDateTime(reader.GetString(6));
+
+              
+
+               
+
+                ClaimReport_Server.Add(item);
+
+
+            }
+            return ClaimReport_Server;
+        }
+        public int deleteStatus(string name)
+        {
+            string sql2 = "delete from GZCleaning_Status where  status_id='" + name + "'";
+
+            int isrun = SQLiteHelper.ExecuteNonQuery(SQLiteHelper.CONNECTION_STRING_BASE, sql2, CommandType.Text, null);
+
+            return isrun;
+
+        }
+      
     }
 }

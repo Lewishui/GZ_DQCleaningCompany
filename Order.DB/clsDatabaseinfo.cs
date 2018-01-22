@@ -16,9 +16,9 @@ namespace Order.DB
         public string AdminIS { get; set; }
         public string jigoudaima { get; set; }
     }
- 
+
     //合同编号	客户姓名	客户住址	联系电话	合同到期时间	合同时长	实收/元	月价/元	面积/m²	提醒收费时间	每月次	总次数	剩余数	"擦玻璃
-      //"	客户要求	备注
+    //"	客户要求	备注
     public class clsOrderinfo
     {
         public int order_id { get; set; }
@@ -41,10 +41,10 @@ namespace Order.DB
         public DateTime Input_Date { get; set; }
         //新增的标记
         public string xinzeng { get; set; }
-     
-    
+
+
         public string Message { get; set; }
-      
+
     }
     //产品型号	订货数量	订货日期	使用单位
 
@@ -57,11 +57,11 @@ namespace Order.DB
         public string end_user { get; set; }
         public string vendor { get; set; }
         public string daohuoshijian { get; set; }
-   
+
         public DateTime Input_Date { get; set; }
         //新增的标记
         public string xinzeng { get; set; }
-   
+
 
     }
 
@@ -101,5 +101,18 @@ namespace Order.DB
         // 标记已计算过的KA 
         public string is_mergeKA { get; set; }
     }
-  
+    public class cls_kehucishufashengshijian_info
+    {
+        public int status_id { get; set; }
+        public string kehuxingming { get; set; }
+        public string shangcichugongshijian { get; set; }
+        public string shangcichugongbaojie { get; set; }
+        public string kehupingjia { get; set; }
+        public string beizhu { get; set; }
+        public DateTime Input_Date { get; set; }
+        //新增的标记
+        public string xinzeng { get; set; }
+
+
+    }
 }
