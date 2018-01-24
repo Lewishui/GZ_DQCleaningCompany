@@ -153,9 +153,14 @@ namespace GZ_DQCleaningCompany
 
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            SolidBrush b = new SolidBrush(this.dataGridView1.RowHeadersDefaultCellStyle.ForeColor);
-            e.Graphics.DrawString((e.RowIndex + 1).ToString(System.Globalization.CultureInfo.CurrentUICulture), this.dataGridView1.DefaultCellStyle.Font, b, e.RowBounds.Location.X + 20, e.RowBounds.Location.Y + 4);
+            //SolidBrush b = new SolidBrush(this.dataGridView1.RowHeadersDefaultCellStyle.ForeColor);
+            //e.Graphics.DrawString((e.RowIndex + 1).ToString(System.Globalization.CultureInfo.CurrentUICulture), this.dataGridView1.DefaultCellStyle.Font, b, e.RowBounds.Location.X + 20, e.RowBounds.Location.Y + 4);
 
+            if (dataGridView1.RowCount > 0)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.Cells[0].Value = row.Index + 1;
+                }
         }
 
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -481,6 +486,7 @@ namespace GZ_DQCleaningCompany
         private string sql_yuju(DoWorkEventArgs e, clsOrderinfo item, string conditions)
         {
             string unsal = conditions;
+
             if (item.hetongbianhao != null)
             {
                 conditions += " hetongbianhao ='" + item.hetongbianhao + "'";
@@ -819,6 +825,9 @@ namespace GZ_DQCleaningCompany
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+                return;
+
             DataGridViewColumn column = dataGridView1.Columns[e.ColumnIndex];
             string _kehuxingming = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["kehuxingming"].EditedFormattedValue.ToString());
 
@@ -833,7 +842,6 @@ namespace GZ_DQCleaningCompany
 
             }
         }
-
 
     }
 }

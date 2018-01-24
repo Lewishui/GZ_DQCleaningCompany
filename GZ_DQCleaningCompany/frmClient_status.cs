@@ -16,7 +16,7 @@ namespace GZ_DQCleaningCompany
 {
     public partial class frmClient_status : Form
     {
-        List<cls_kehucishufashengshijian_info>  list_Server;
+        List<cls_kehucishufashengshijian_info> list_Server;
         int rowcount;
         string txfind;
         private SortableBindingList<cls_kehucishufashengshijian_info> sortableOrderList;
@@ -111,8 +111,8 @@ namespace GZ_DQCleaningCompany
             if (list_Server != null)
             {
 
-                sortableOrderList = new SortableBindingList<cls_kehucishufashengshijian_info>( list_Server);
-                bindingSource1.DataSource = new SortableBindingList<cls_kehucishufashengshijian_info>( list_Server);
+                sortableOrderList = new SortableBindingList<cls_kehucishufashengshijian_info>(list_Server);
+                bindingSource1.DataSource = new SortableBindingList<cls_kehucishufashengshijian_info>(list_Server);
                 dataGridView1.AutoGenerateColumns = false;
 
                 dataGridView1.DataSource = bindingSource1;
@@ -126,7 +126,7 @@ namespace GZ_DQCleaningCompany
             string cell_key = e.RowIndex.ToString() + "_" + e.ColumnIndex.ToString();
             var new_cell_value = row.Cells[e.ColumnIndex].Value;
             var original_cell_value = dataGridChanges[cell_key];
-             if (new_cell_value == null && original_cell_value == null)
+            if (new_cell_value == null && original_cell_value == null)
             {
                 dataGridChanges.Remove(cell_key + "_changed");
             }
@@ -172,7 +172,7 @@ namespace GZ_DQCleaningCompany
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-          
+
         }
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -216,7 +216,7 @@ namespace GZ_DQCleaningCompany
                     item.kehupingjia = Convert.ToString(dataGridView1.Rows[i].Cells["kehupingjia"].EditedFormattedValue.ToString());
 
                     item.beizhu = Convert.ToString(dataGridView1.Rows[i].Cells["beizhu"].EditedFormattedValue.ToString());
-                 
+
                     item.xinzeng = Convert.ToString(dataGridView1.Rows[i].Cells["xinzeng"].EditedFormattedValue.ToString());
                     item.Input_Date = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
                     item.status_id = model.status_id;
@@ -224,12 +224,12 @@ namespace GZ_DQCleaningCompany
                 #endregion
 
                     #region MyRegion
-               
+
 
                     #region  构造查询条件
                     string conditions = "";
                     conditions = sql_yuju(e, item, conditions);
-                  
+
                     #endregion
                     #endregion
 
@@ -261,6 +261,9 @@ namespace GZ_DQCleaningCompany
 
         private string sql_yuju(DoWorkEventArgs e, cls_kehucishufashengshijian_info item, string conditions)
         {
+            string unsal = conditions;
+
+
             if (item.kehuxingming != null)
             {
                 conditions += " kehuxingming ='" + item.kehuxingming + "'";
@@ -281,19 +284,26 @@ namespace GZ_DQCleaningCompany
             {
                 conditions += " ,beizhu ='" + item.beizhu + "'";
             }
-           
+
             if (item.Input_Date != null)
             {
                 conditions += " ,Input_Date ='" + item.Input_Date.ToString("yyyy/MM/dd") + "'";
             }
             if (item.xinzeng == "true")
-                conditions = "insert into GZCleaning_Status(kehuxingming,shangcichugongshijian,shangcichugongbaojie,kehupingjia,beizhu,Input_Date) values ('" + item.kehuxingming + "','" + item.shangcichugongshijian + "','" + item.shangcichugongbaojie + "','" + item.kehupingjia + "','" + item.beizhu  + "','" + item.Input_Date.ToString("yyyy/MM/dd") + "')";
+                conditions = "insert into GZCleaning_Status(kehuxingming,shangcichugongshijian,shangcichugongbaojie,kehupingjia,beizhu,Input_Date) values ('" + item.kehuxingming + "','" + item.shangcichugongshijian + "','" + item.shangcichugongbaojie + "','" + item.kehupingjia + "','" + item.beizhu + "','" + item.Input_Date.ToString("yyyy/MM/dd") + "')";
             else if (is_AdminIS == true)
                 conditions = "update GZCleaning_Status set  " + conditions + " where status_id = " + item.status_id + " ";
             else if (is_AdminIS == false)
             {
-                e.Result = "[" + item.kehuxingming + "]普通用户无权修改单据，如需修改请联系管理员";
-                throw new Exception("[" + item.kehuxingming + "]普通用户 无权修改单据，如需修改请联系管理员");
+                if (item.shangcichugongshijian != null)
+                {
+                    unsal += "shangcichugongshijian ='" + item.shangcichugongshijian + "'";
+                }
+                unsal = "update GZCleaning_Status set  " + unsal + " where status_id = " + item.status_id + " ";
+
+                return unsal;
+                //  e.Result = "[" + item.kehuxingming + "]普通用户无权修改单据，如需修改请联系管理员";
+                // throw new Exception("[" + item.kehuxingming + "]普通用户 无权修改单据，如需修改请联系管理员");
             }
             return conditions;
         }
@@ -345,7 +355,7 @@ namespace GZ_DQCleaningCompany
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -372,12 +382,12 @@ namespace GZ_DQCleaningCompany
 
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (is_AdminIS == false)
-            //{
-            //    MessageBox.Show("普通用户 无权修改单据，如需修改请联系管理员", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (is_AdminIS == false)
+            {
+                MessageBox.Show("普通用户 无权修改单据，如需修改请联系管理员", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            //    return;
-            //}
+                return;
+            }
             if (MessageBox.Show(" 确认删除这条信息 , 继续 ?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
 
@@ -402,7 +412,7 @@ namespace GZ_DQCleaningCompany
                     }
                     if (istu != 1)
                     {
-                        MessageBox.Show("删除失败，请查看" + filtered[i].kehuxingming , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("删除失败，请查看" + filtered[i].kehuxingming, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
