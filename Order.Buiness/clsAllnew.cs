@@ -35,9 +35,7 @@ namespace Order.Buiness
         public clsAllnew()
         {
             newsth = AppDomain.CurrentDomain.BaseDirectory + "System\\" + dataSource;
-
-
-
+            
         }
         public void createUser_Server(List<clsuserinfo> AddMAPResult)
         {

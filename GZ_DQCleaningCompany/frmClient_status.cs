@@ -172,39 +172,7 @@ namespace GZ_DQCleaningCompany
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridChanges == null)
-                return;
-
-            try
-            {
-                int s = this.tabControl1.SelectedIndex;
-                if (s == 0)
-                {
-                    dataGridView1.Enabled = false;
-                    if (changeindex.Count < 1)
-                    {
-                        IEnumerable<int> orderIds = GetChangedOrderIds();
-                        foreach (var id in orderIds.Distinct())
-                        {
-                            changeindex.Add(id);
-                        }
-                    }
-                }
-
-                if (backgroundWorker2.IsBusy != true)
-                {
-                    backgroundWorker2.RunWorkerAsync(new WorkerArgument { OrderCount = 0, CurrentIndex = 0 });
-
-                }
-                dataGridChanges.Clear();
-
-            }
-            catch (Exception ex)
-            {
-                dataGridChanges.Clear();
-                return;
-                throw;
-            }
+          
         }
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -439,6 +407,43 @@ namespace GZ_DQCleaningCompany
                 }
             }
             BindDataGridView();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridChanges == null)
+                return;
+
+            try
+            {
+                int s = this.tabControl1.SelectedIndex;
+                if (s == 0)
+                {
+                    dataGridView1.Enabled = false;
+                    if (changeindex.Count < 1)
+                    {
+                        IEnumerable<int> orderIds = GetChangedOrderIds();
+                        foreach (var id in orderIds.Distinct())
+                        {
+                            changeindex.Add(id);
+                        }
+                    }
+                }
+
+                if (backgroundWorker2.IsBusy != true)
+                {
+                    backgroundWorker2.RunWorkerAsync(new WorkerArgument { OrderCount = 0, CurrentIndex = 0 });
+
+                }
+                dataGridChanges.Clear();
+
+            }
+            catch (Exception ex)
+            {
+                dataGridChanges.Clear();
+                return;
+                throw;
+            }
         }
 
 
