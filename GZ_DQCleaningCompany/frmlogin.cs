@@ -25,7 +25,7 @@ namespace GZ_DQCleaningCompany
         private System.Timers.Timer timerAlter1;
         int logis = 0;
         private OrdersControl OrdersControl;
-       bool is_AdminIS;
+        bool is_AdminIS;
 
         public frmlogin()
         {
@@ -37,11 +37,11 @@ namespace GZ_DQCleaningCompany
             //se = new Sunisoft.IrisSkin.SkinEngine();
             //se.SkinAllForm = true;
             //se.SkinFile = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ""), "PageColor1.ssk");
-           
+
 
             InitialPassword();
             ProcessLogger.Fatal("login" + DateTime.Now.ToString());
-         
+
         }
         private void InitialSystemInfo()
         {
@@ -180,7 +180,7 @@ namespace GZ_DQCleaningCompany
                 MessageBox.Show("六个月运行期已到，请将剩余费用付清 !");
                 return;
             }
-           
+
 
             #endregion
             try
@@ -233,7 +233,7 @@ namespace GZ_DQCleaningCompany
 
 
 
-                if (userlist_Server.Count>0&&userlist_Server[0].Btype == "lock")
+                if (userlist_Server.Count > 0 && userlist_Server[0].Btype == "lock")
                 {
                     MessageBox.Show("登录失败,账户已被锁定，请重试或联系系统管理员，谢谢", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -263,7 +263,7 @@ namespace GZ_DQCleaningCompany
                         // return false;
                     }
 
-                 if (logis == 0)
+                if (logis == 0)
                 {
                     MessageBox.Show("登录失败，请确认用户名和密码或联系系统管理员，谢谢", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
