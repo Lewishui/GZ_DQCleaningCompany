@@ -35,6 +35,8 @@ namespace GZ_DQCleaningCompany
         List<int> changeindex;
         List<clsOrderinfo> deletedorderList;
         string prc_folderpath;
+        int pagenowindex = 0;
+        int selectindex = 1;
 
         private Hashtable dataGridChanges = null;
         private bool is_AdminIS;
@@ -50,7 +52,7 @@ namespace GZ_DQCleaningCompany
             deletedorderList = new List<clsOrderinfo>();
 
 
-            this.BindDataGridView();
+            this.BindDataGridView(Orderinfolist_Server);
 
             this.WindowState = FormWindowState.Maximized;
         }
@@ -133,11 +135,23 @@ namespace GZ_DQCleaningCompany
 
                 //}
             }
+            pagenowindex = 0;
 
+            selectindex = 1;
+            #region 显示信息
+            var filtercout = Orderinfolist_Server.Where(o => o.Input_Date != null).Skip(pagenowindex).ToList();
+            pagenowindex += 50;
+            filtercout = filtercout.Where(o => o.Input_Date != null).Take(50).ToList();
 
-            this.BindDataGridView();
+            BindDataGridView(filtercout);   //   
+            Pagelogic();
+
+            #endregion
+
+            //   this.BindDataGridView(  Orderinfolist_Server);
+
         }
-        private void BindDataGridView()
+        private void BindDataGridView(List<clsOrderinfo> Orderinfolist_Server)
         {
             if (Orderinfolist_Server != null)
             {
@@ -147,7 +161,7 @@ namespace GZ_DQCleaningCompany
                 dataGridView1.AutoGenerateColumns = false;
 
                 dataGridView1.DataSource = bindingSource1;
-                this.toolStripLabel1.Text = "条数：" + sortableOrderList.Count.ToString();
+                this.toolStripLabel3.Text = "" + sortableOrderList.Count.ToString() + "/" + Orderinfolist_Server.Count + " (当前页面条目/条数总计)";
             }
         }
 
@@ -199,7 +213,7 @@ namespace GZ_DQCleaningCompany
                     }
                 }
             }
-            BindDataGridView();
+            BindDataGridView(Orderinfolist_Server);
         }
         private List<long> GetOrderIdsBySelectedGridCell()
         {
@@ -631,6 +645,9 @@ namespace GZ_DQCleaningCompany
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            if (Orderinfolist_Server != null)
+                dataGridView1.DataSource = Orderinfolist_Server;
+
             if (this.dataGridView1.Rows.Count == 0)
             {
                 MessageBox.Show("Sorry , No Data Output !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -775,7 +792,7 @@ namespace GZ_DQCleaningCompany
 
                         this.dataGridView1.DataSource = bindingSource1;
 
-                        this.toolStripLabel1.Text = "条目： " + Orderinfolist_Server.Count;
+                        this.toolStripLabel1.Text = "已上传条目： " + Orderinfolist_Server.Count;
                     }
                 }
             }
@@ -840,6 +857,56 @@ namespace GZ_DQCleaningCompany
 
                 }
 
+            }
+        }
+
+        private void moveDayUpButton_Click(object sender, EventArgs e)
+        {
+            if (selectindex <= 1)
+                return;
+
+
+            var filtercout = Orderinfolist_Server.Where(o => o.Input_Date != null).Skip(pagenowindex).ToList();
+            pagenowindex -= 50;
+            filtercout = filtercout.Where(o => o.Input_Date != null).Take(50).ToList();
+
+            BindDataGridView(filtercout);   //   
+            if (selectindex > 0)
+                selectindex--;
+
+            Pagelogic();
+        }
+
+        private void moveDayDownButton_Click(object sender, EventArgs e)
+        {
+            if (selectindex > Orderinfolist_Server.Count / 50)
+                return;
+
+            var filtercout = Orderinfolist_Server.Where(o => o.Input_Date != null).Skip(pagenowindex).ToList();
+            pagenowindex += 50;
+            filtercout = filtercout.Where(o => o.Input_Date != null).Take(50).ToList();
+
+            BindDataGridView(filtercout);
+            if (selectindex <= Orderinfolist_Server.Count / 50)
+                selectindex++;
+            Pagelogic();
+        }
+
+        private void Pagelogic()
+        {
+            if (Orderinfolist_Server != null)
+            {
+                if (selectindex > Orderinfolist_Server.Count / 50)
+                    selectindex = 1;
+
+                if (Orderinfolist_Server.Count / 50 == 0)
+                {
+
+                    this.toolStripLabel1.Text = " 当前页" + selectindex + "/" + "1";
+
+                }
+                else
+                    this.toolStripLabel1.Text = " 当前页 " + selectindex + "/" + Orderinfolist_Server.Count / 50;
             }
         }
 
