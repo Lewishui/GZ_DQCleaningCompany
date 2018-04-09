@@ -63,6 +63,7 @@
             this.eToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dockPanel2 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.重置密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -174,14 +175,14 @@
             // 导入彩票数据ToolStripMenuItem
             // 
             this.导入彩票数据ToolStripMenuItem.Name = "导入彩票数据ToolStripMenuItem";
-            this.导入彩票数据ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.导入彩票数据ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导入彩票数据ToolStripMenuItem.Text = "主页面";
             this.导入彩票数据ToolStripMenuItem.Click += new System.EventHandler(this.导入彩票数据ToolStripMenuItem_Click);
             // 
             // 查询信息ToolStripMenuItem
             // 
             this.查询信息ToolStripMenuItem.Name = "查询信息ToolStripMenuItem";
-            this.查询信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.查询信息ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.查询信息ToolStripMenuItem.Text = "工作日志";
             this.查询信息ToolStripMenuItem.Click += new System.EventHandler(this.查询信息ToolStripMenuItem_Click);
             // 
@@ -189,7 +190,8 @@
             // 
             this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.关于系统ToolStripMenuItem,
-            this.eToolStripMenuItem});
+            this.eToolStripMenuItem,
+            this.重置密码ToolStripMenuItem});
             this.toolStripDropDownButton3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripDropDownButton3.Image = global::GZ_DQCleaningCompany.Properties.Resources.icon_warning_s;
             this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -201,15 +203,16 @@
             // 关于系统ToolStripMenuItem
             // 
             this.关于系统ToolStripMenuItem.Name = "关于系统ToolStripMenuItem";
-            this.关于系统ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.关于系统ToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.关于系统ToolStripMenuItem.Text = "关于系统";
             this.关于系统ToolStripMenuItem.Click += new System.EventHandler(this.关于系统ToolStripMenuItem_Click);
             // 
             // eToolStripMenuItem
             // 
             this.eToolStripMenuItem.Name = "eToolStripMenuItem";
-            this.eToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.eToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.eToolStripMenuItem.Text = "初始化";
+            this.eToolStripMenuItem.Visible = false;
             this.eToolStripMenuItem.Click += new System.EventHandler(this.eToolStripMenuItem_Click);
             // 
             // panel1
@@ -283,6 +286,13 @@
             this.dockPanel2.TabIndex = 9;
             this.dockPanel2.ActiveContentChanged += new System.EventHandler(this.dockPanel2_ActiveContentChanged);
             // 
+            // 重置密码ToolStripMenuItem
+            // 
+            this.重置密码ToolStripMenuItem.Name = "重置密码ToolStripMenuItem";
+            this.重置密码ToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.重置密码ToolStripMenuItem.Text = "重置管理员密码";
+            this.重置密码ToolStripMenuItem.Click += new System.EventHandler(this.重置密码ToolStripMenuItem_Click);
+            // 
             // frmlogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,6 +331,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel panel1;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel2;
+        private System.Windows.Forms.ToolStripMenuItem 重置密码ToolStripMenuItem;
 
     }
 }

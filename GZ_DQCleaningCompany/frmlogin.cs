@@ -323,12 +323,37 @@ namespace GZ_DQCleaningCompany
 
         private void eToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+     
         }
 
         private void dockPanel2_ActiveContentChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void 重置密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(" 确认重置管理者账号 , 继续 ?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+
+            }
+            else
+                return;
+            List<clsuserinfo> userlist_Server = new List<clsuserinfo>();
+            clsuserinfo item = new clsuserinfo();
+
+            item.name = "admin";
+            item.password = "123";
+            item.Btype = "Normal";
+            item.AdminIS = "true";
+            item.jigoudaima = "管理者";
+            item.Createdate = DateTime.Now.ToString("yyyy/MM/dd/HH");
+            userlist_Server.Add(item);
+            clsAllnew BusinessHelp = new clsAllnew();
+            BusinessHelp.createUser_Server(userlist_Server);
+
+            MessageBox.Show("初始化用户成功！" + "用户名 ：admin  密码 ：123", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
 
     }
